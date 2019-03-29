@@ -1,0 +1,233 @@
+.ranking{
+    .contain-body;
+
+    .banner{
+        font-size: 80px;
+        .tx-ct;
+        color: #fff;
+        background: url('../../images/ranking/banner.png');
+        width: 100%;
+        height: 250px;
+        .block;
+        padding-top: 120px;
+    }
+
+    .content{
+        background: @main-bg-lh;
+    
+        .query-opera{
+            padding: 0 20px;
+            height: 68px;
+            line-height: 68px;
+
+            &>div{
+                .in-block;
+            }
+
+            .opera-type{
+                &>span{
+                    border: 1px solid @c-white;
+                    padding: 5px 10px;
+                    line-height: 36px;
+                    border-radius: 5px;
+                    .tx-ct;
+                    .in-block;
+                    color: @c-white;
+                    margin-right: 5px;
+
+                    &.active{
+                        color: #fff;
+                        background: @blue-btn;
+                        border-color: @blue-btn;
+                    }
+                }
+            }
+
+            .update-date{
+                .right;
+                padding-top: 14px;
+
+                &>span{
+                    .block;
+                    color: @c-white;
+                    font-size: 12px;
+                    line-height: 20px;
+                }
+            }
+            .follow-btn{
+                .right;
+                background: @blue-btn;
+                border-color: @blue-btn;
+                color: #fff;
+                padding: 0 10px;
+                line-height: 30px;
+                margin-left: 20px;
+                margin-top: 19px;
+                .tx-ct;
+                .cspn;
+
+                &>i{padding-left: 10px;}
+            }
+        }
+
+        .my-info{
+            background: @blur-bg-color;
+            color: #fff;
+            padding: 5px 20px;
+            height: 60px;
+            font-size: 14px;
+            strong{
+                font-weight: bold;
+            }
+
+            .record{
+                .left;
+
+                h4{
+                    font-size: 16px; 
+                    &::before{
+                        content: '';
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background: #fff;
+                        .in-block;
+                        margin-right: 5px;
+                    }
+                }
+                p{
+                    padding-top: 5px;
+                    span{
+                        margin-right: 25px;
+                        font-size: 12px;
+                    }
+                    strong{
+                        font-size: 14px;
+                    }
+                    .grade{
+                        .relative;
+                        margin-right: 50px;
+                        &::after{
+                            content: '';
+                            width: 20px;
+                            height: 22px;
+                            .in-block;
+                            background: url('../../images/ranking/grade.png') no-repeat;
+                            .absolute;
+                            right: -25px;
+                            top: -2px;
+                        }
+                    }
+                    .life{
+                        &>strong{
+                            color: @font-blue;
+                        }
+                    }
+                }
+            }
+            .follow{
+                padding-top: 5px;
+                .right;
+                span{
+                    .block;
+                    line-height: 20px;
+                }
+                strong{
+                    color: @font-blue;
+                }
+            }
+        }
+
+        .rank-list{
+            padding: 0 20px;
+            margin-top: 10px;
+            height: 420px;
+            overflow: hidden;
+            .flex;
+
+            .left-nav{
+                .clear-scroll;
+                width: 220px;
+                background: rgba(47, 97, 151, .3);
+                .cspn;
+
+                &>li{
+                    color: @c-white;
+                    font-size: 16px;
+                    line-height: 40px;
+                    padding-left: 15px;
+
+                    &.active{
+                        border-left: 2px solid @primary-color;
+                        color: @primary-color;
+                        font-size: 16px;
+                        background: rgba(47, 97, 151, .5);
+                    }
+                }
+            }
+
+            .right-list{
+                color: rgba(255, 255, 255, .8);
+                width: calc(100% - 220px);
+                margin-left: 20px;
+
+                &>ul{
+                    &>li{
+                        line-height: 70px;
+                        &:nth-child(even){
+                            background-color:rgba(33, 70, 109, .45);
+                        }
+                        .tx-ct;
+                   
+                        .rank-icon{
+                            width: 58px;
+                            height: 66px;
+                            vertical-align: -30px;
+                            .in-block;
+                        }
+                        .rank-icon0{ background: url('../../images/ranking/NO1.png'); }
+                        .rank-icon1{ background: url('../../images/ranking/NO2.png'); }
+                        .rank-icon2{ background: url('../../images/ranking/NO3.png'); }
+                    }
+                    .rank-leave0{ 
+                        color: @c-yellow; 
+                        background: url('../../images/ranking/boder1.png');
+                    }
+                    .rank-leave1{ color: #fff; background: url('../../images/ranking/boder2.png');}
+                    .rank-leave2{ color: #8f524e; background: url('../../images/ranking/boder3.png');}
+
+                    span{
+                        .in-block;
+                        width: 18%;
+                        height: 80px;
+                        &:nth-child(3){ width: 26%;  font-weight: bold;}
+
+                        i{ height: 60px;}
+                    }
+    
+                    .title{
+                        background: rgba(47, 97, 151, .5);
+                        font-weight: bold;
+                        height: 40px;
+                        line-height: 40px;
+                    }
+
+                    .grade{
+                        &::before{
+                            content: '';
+                            width: 35px;
+                            height: 44px;
+                            .in-block;
+                            background: url('../../images/ranking/cf.png') no-repeat;
+                            vertical-align: -12px;
+                            padding-right: 5px;
+                        }
+                    }
+                    .add{
+                        padding-left: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

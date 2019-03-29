@@ -1,0 +1,231 @@
+.contain-body {
+  width: 1360px;
+  margin: 0 auto;
+}
+
+.list-flex {
+  .relative;
+  display: flex;
+
+  li {
+    text-align: center;
+    flex: 1;
+  }
+}
+
+.list-active-bg-pic {
+  cursor: pointer;
+
+  &.active {
+    background: url('../images/home/nav/zh-active.png') no-repeat;
+    background-size: 99% 100%;
+    margin-left: -2px;
+    text-shadow: 0 0 0 @primary-color, 0 0 5px @primary-color, 0 0 0 @primary-color, 0 0 5px @primary-color, 0px 0px 2px @primary-color;
+    color: @c-white;
+  }
+}
+
+.left-list {
+  .relative;
+  .cspn;
+}
+
+.clear-scroll {
+  height: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// 公告面板标头
+.article-panel {
+  &>h1 {
+    height: 38px;
+    line-height: 38px;
+    padding-left: 10px;
+    background: url('../images/home/nav/bg.png') no-repeat center center;
+    letter-spacing: 2px;
+    background-size: 100%;
+    color: @c-white;
+    font-size: 16px;
+  }
+}
+
+// 公告面板滚动
+.article-scroll {
+  &>article {
+    width: 100%;
+    .article-panel;
+
+    h1 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: normal;
+      border-top: 1px solid #173858;
+      border-bottom: 1px solid #071420;
+      width: 100%;
+
+      img {
+        vertical-align: -8px;
+        padding-right: 10px;
+      }
+
+      a {
+        font-size: 14px;
+        .right;
+        color: #fff;
+        padding-right: 10px;
+      }
+    }
+
+    &>ul {
+      padding: 10px;
+      color: rgba(229, 229, 229, .8);
+      .clear-scroll;
+
+      li {
+        line-height: 28px;
+
+        &>i {
+          vertical-align: 9px;
+        }
+
+        .text {
+          width: 282px;
+          .text-overflow;
+        }
+
+        .date {
+          .right;
+        }
+      }
+    }
+  }
+}
+
+// 收缩列表一级目录
+.nav-list {
+  &>li {
+    .left-list;
+    line-height: 50px;
+    font-size: 18px;
+    color: #aacbe8;
+    border-top: 1px solid #21486e;
+    border-top: 1px solid #07192a;
+
+    &:before {
+      content: '';
+      .in-block;
+      .absolute;
+      width: 32px;
+      height: 32px;
+      top: 9px;
+      left: 10px;
+    }
+
+    &.active {
+      border-top: 1px solid @primary-color;
+
+      &>span {
+        color: @primary-color;
+      }
+    }
+
+    &:last-child {
+      background: #173c60;
+    }
+
+    &>span {
+      .block;
+      padding-left: 55px;
+      width: 100%;
+      background: rgba(24, 71, 124, 0.5);
+    }
+  }
+}
+
+// 收缩列表二级目录
+.nav-list2 {
+  .clear-scroll;
+
+  &>li {
+    .left-list;
+    font-size: 14px;
+
+    &:before {
+      content: '';
+      width: 32px;
+      height: 32px;
+      top: 9px;
+      left: 22px;
+      .absolute;
+      .in-block;
+    }
+
+    &>span {
+      padding-left: 62px;
+
+      em {
+        .absolute;
+        right: 20px;
+      }
+    }
+
+    &.active {
+      &>span {
+        width: 100%;
+        background: url('../images/home/nav/list-bg2.png') no-repeat;
+        text-shadow: 0 0 0 @primary-color, 0 0 5px @primary-color, 0 0 0 @primary-color, 0 0 5px @primary-color, 0px 0px 2px @primary-color;
+        color: #fff;
+        .block;
+
+        em {
+          box-shadow: none;
+          text-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+input {
+  border-radius: 5px;
+  padding-left: 5px;
+  height: 40px;
+  border: 1px solid #000;
+}
+input, select, button, a{
+  outline: none;
+}
+
+.blue-btn {
+  background: -prefix-linear-zgradient(top, #399be4, #054c80);
+  background: linear-gradient(to bottom, #399be4, #054c80);
+  color: #fff;
+  border: 0;
+  line-height: 32px;
+  outline: none;
+  border-radius: 5px;
+  .in-block;
+  .cspn;
+}
+
+// 轮播滚动
+// @keyframes rowup {
+//     0% {
+//         -webkit-transform: translate3d(0, 0, 0);
+//         transform: translate3d(0, 0, 0);
+//     }
+//     100% {
+//         -webkit-transform: translate3d(0, -248px, 0);
+//         transform: translate3d(0, -248px, 0);
+//         display: none;
+//     }
+// }
+// .game-info article{
+//     -webkit-animation: 10s rowup linear infinite normal;
+//     animation: 10s rowup linear infinite normal;
+//     .relative;
+// }

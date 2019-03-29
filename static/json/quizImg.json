@@ -1,0 +1,9 @@
+{
+    "images": [
+        {
+            "src": '/static/quiz/2_2.png'
+        },{
+            "src": '/static/quiz/2_1.png'
+        }
+    ]
+}

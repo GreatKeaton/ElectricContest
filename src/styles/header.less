@@ -1,0 +1,425 @@
+// 投注记录
+.betting-record-dialog {
+  .query-criteria {
+    padding-left: 15px;
+    background: #0b263b;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+
+    * {
+      .in-block;
+      font-size: 14px;
+    }
+
+    img {
+      vertical-align: -2px;
+      margin-left: 10px;
+    }
+
+    .query-list-btn {
+      width: 75px;
+    }
+
+    .query-list-btn,
+    .jydh-input a,
+    &>select {
+      .tx-ct;
+      border-radius: 5px;
+      color: #fff;
+      background: #2b7bac;
+      height: 25px;
+      line-height: 25px;
+      border: 0;
+      width: 92px;
+    }
+
+    .jydh-input {
+      a {
+        padding: 0 15px;
+      }
+
+      input {
+        background: transparent;
+        height: 25px;
+        border-color: #2b7bac;
+        margin-left: -10px;
+        padding-left: 10px;
+        width: 150px;
+
+        &::placeholder {
+          color: #8d9295;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  table {
+    width: 96%;
+    margin: 20px auto;
+
+    thead,
+    tfoot {
+      background: #3a6786;
+
+      tr {
+        border-top: 1px solid #6996b7;
+      }
+    }
+
+    td,
+    th {
+      height: 24px;
+      border-right: 1px solid #17334b;
+      .tx-ct;
+
+      &:last-child {
+        border: 0;
+      }
+    }
+
+    tbody td {
+      padding: 10px;
+    }
+  }
+
+  .list-page {
+    background: #0c273c;
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #446984;
+    .tx-ct;
+  }
+
+  .record-bet {
+    .query-result {
+      &>div {
+        padding-left: 15px;
+        margin-top: 15px;
+
+        select {
+          background: #0e2a40;
+          border: 1px solid #0e2a40;
+          outline: none;
+          width: 100px;
+          height: 25px;
+          border-radius: 5px;
+          color: #fff;
+          margin-right: 10px;
+          .cspn;
+        }
+      }
+
+      &>table {
+        margin-bottom: 260px;
+      }
+    }
+  }
+
+  .betting-record {
+    color: #fff;
+
+    &>h1 {
+      font-size: 18px;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 15px;
+      font-weight: 500;
+
+      .el-icon-menu {
+        margin-right: 5px;
+      }
+
+      .el-icon-close {
+        float: right;
+        margin-right: 5px;
+        margin-top: 3px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+
+    &>div {
+      background: rgba(27, 66, 97, .7);
+    }
+
+    .query-bet-list {
+      padding-top: 15px;
+      text-align: left;
+      width: 100%;
+      height: 60px;
+
+      li {
+        background: #011a30;
+        padding: 5px 15px;
+        display: inline-block;
+        border-radius: 5px;
+        margin-left: 10px;
+        .cspn;
+
+        &.active {
+          background: #2e83b9;
+          color: #fff;
+        }
+      }
+    }
+
+    // 积分查询
+    .query-integral,
+    .record-activity {
+
+      .query-result {
+        height: 565px;
+
+        .list-data {
+          height: 525px;
+          background: rgba(25, 60, 88, .7);
+
+          table {
+            width: 96%;
+            margin: 20px auto;
+
+            thead,
+            tfoot {
+              background: #3a6786;
+              border-top: 1px solid #6996b7;
+            }
+
+            td,
+            th {
+              height: 24px;
+              border-right: 1px solid #17334b;
+              .tx-ct;
+
+              &:last-child {
+                border: 0;
+              }
+            }
+
+            td {
+              padding: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+// 功能设定开始
+.func-set-dialog {
+  .el-dialog__header {
+    padding: 0;
+    background: transparent;
+    height: 35px;
+  }
+
+  .el-dialog__body {
+    .absolute;
+    top: 0;
+    padding: 0;
+  }
+
+  .function-setting {
+    color: #fff;
+
+    &>h1 {
+      font-size: 18px;
+      height: 40px;
+      line-height: 40px;
+      background: #006fb7;
+      padding-left: 15px;
+      font-weight: 500;
+
+      .el-icon-menu {
+        margin-right: 5px;
+      }
+
+      .el-icon-close {
+        float: right;
+        margin-right: 5px;
+        margin-top: 3px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+
+    &>div {
+      background: rgba(3, 46, 78, 0.7);
+      font-size: 14px;
+      text-align: center;
+
+      input,
+      select {
+        background: #2680be;
+        border: 0;
+        height: 25px;
+        color: #fff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding-left: 5px;
+        outline: none;
+      }
+
+      input,
+      select,
+      ol {
+        width: 260px;
+        margin: 0 auto;
+      }
+
+      select {
+        margin-bottom: 10px;
+      }
+
+      .preference {
+        font-size: 14px;
+
+        li {
+          span {
+            width: 108px;
+            text-align: right;
+            .in-block;
+          }
+
+          div {
+            .in-block;
+            width: 260px;
+            background: #2680be;
+            border: 0;
+            height: 25px;
+            line-height: 25px;
+            color: #fff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding-left: 15px;
+            text-align: left;
+
+            input {
+              width: 15px;
+              height: 15px;
+              vertical-align: -2px;
+            }
+          }
+          select, div{
+            width: 220px;
+          }
+        }
+      }
+
+      .calculator {
+        .all {
+          padding-left: 128px;
+          margin-top: 10px;
+
+          span {
+            background: #0d6298;
+            width: 40px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            font-size: 12px;
+            margin-right: 10px;
+            display: inline-block;
+            cursor: pointer;
+          }
+        }
+
+        ol {
+          margin-bottom: 10px;
+
+          li {
+            background: #1f79b5;
+            border-radius: 5px;
+            margin-bottom: 1px;
+            line-height: 30px;
+
+            span {
+              float: left;
+              padding-left: 10px;
+              width: 30px;
+            }
+          }
+
+          input,
+          .rdo {
+            display: inline-block;
+            border-radius: 5px;
+          }
+
+          .price {
+            width: 80px;
+            background: #0b3859;
+            float: left;
+            margin-left: 10px;
+            margin-top: 4px;
+            color: #fff;
+            margin-right: 20px;
+          }
+
+          .rdo {
+            width: 40px;
+          }
+        }
+
+        .num-list {
+          text-align: left;
+          width: 260px;
+          margin: 0 auto;
+          background: #217ab6;
+          border-radius: 5px;
+          font-size: 12px;
+
+          p {
+            padding-left: 10px;
+            border-bottom: 1px solid #0e527e;
+            line-height: 30px;
+
+            span {
+              float: right;
+              padding-right: 10px;
+            }
+          }
+
+          .c-yellow {
+            color: #f1c26e;
+          }
+        }
+
+      }
+
+      .preference button,
+      .reset-btn {
+        font-size: 16px;
+        width: 108px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+    }
+
+    .query-set {
+      padding-top: 15px;
+      text-align: left;
+      margin-bottom: 25px;
+      cursor: pointer;
+
+      li {
+        background: #011a30;
+        padding: 5px 15px;
+        display: inline-block;
+        border-radius: 5px;
+        margin-left: 10px;
+
+        &.active {
+          background: #388cc8;
+        }
+      }
+    }
+  }
+}
+
+// 功能设定结束

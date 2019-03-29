@@ -1,0 +1,99 @@
+.quiz{
+    .contain-body;
+
+    .top-nav-list{
+        .flex;
+        background: rgba(14, 51, 86, .55);
+        border-top: 1px solid #3d829f;
+        border-bottom: 1px solid #143758;
+        height: 50px;
+        line-height: 50px;
+        .cspn;
+
+        &>li{
+            flex: 1;
+            font-size: 16px; 
+            color: #a6adb7;
+            .tx-ct;
+
+            &.active{
+                background: url('../../images/quiz/activeNav.png') no-repeat;
+                color: #fff;
+            }
+        }
+    }
+
+    .content{
+        .flex;
+
+        .left-scroll{
+            padding: 5px 10px;
+            width: 320px;
+            height: auto;
+
+            li{
+                width: 300px;
+                height: 138px;
+                margin-top: 5px;
+                .cspn;
+
+                img{
+                    width: 90%;
+                    height: 100%;
+                    margin: 0 auto;
+                    .block;
+                }
+
+            }
+            .active{
+                height: 170px;
+
+                img{
+                    width: 100%;
+                }
+            }
+
+            
+        }
+        .detail{
+            background: @main-bg-lh;
+            padding: 10px 20px;
+            width: calc(100% - 320px);
+            height: auto;
+
+            &>img{
+                width: 100%;
+                height: 480px;
+            }
+            &>article{
+                color: #fff;
+                padding-top: 30px;
+                .tx-ct;
+
+                h1{
+                    font-size: 36px;
+                    margin-bottom: 15px;
+                    font-weight: 400;
+                }
+                span{
+                    color: #cddbde;
+                    line-height: 25px;
+                    font-size: 14px;
+                    .block;
+                }
+
+                a{
+                     background: #2f6197;
+                     color: #fff;
+                     border-radius: 30px;
+                     width: 150px;
+                     height: 50px;
+                     line-height: 50px;
+                     font-size: 22px;
+                     margin: 30px auto;
+                     .block;
+                }
+            }
+        }
+    }
+}

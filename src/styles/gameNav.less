@@ -1,0 +1,43 @@
+// 头部游戏图标导航栏
+
+.top-game-nav-list{
+    .flex;
+    background: rgba(14, 51, 86, .55);
+    border-top: 1px solid #3d829f;
+    border-bottom: 1px solid #143758;
+    height: 52px;
+    line-height: 50px;
+    .cspn;
+
+    &>li{
+        flex: 1;
+        font-size: 16px; 
+        color: #a6adb7;
+        .tx-ct;
+
+        &.active{
+            background: url('../images/datacenter/navActive.png') no-repeat;
+            color: #fff;
+        }
+
+        i{
+            width: 32px;
+            height: 32px;
+            background: url('../images/news/list.png') no-repeat center center;
+            vertical-align: -10px;
+            margin-right: 3px;
+            .in-block;
+
+            &.icon-0{ background-position: 0 0; }
+            &.icon-1{ background-position: -32px 0; }
+            &.icon-2{ background-position: -64px 0; }
+            &.icon-3{ background-position: -96px 0; }
+            &.icon-4{ background-position: -128px 0; }
+            &.icon-5{ background-position: -160px 0; }
+            &.icon-6{ background-position: -192px 0; }
+            &.icon-7{ background-position: -224px 0; }
+            &.icon-8{ background-position: -256px 0; }
+            &.icon-00{ background-position: -289px 0; }
+        }
+    }
+}
