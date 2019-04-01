@@ -14,7 +14,7 @@
               {{item.name}}
               <i class="el-icon-error" @click="functionbind(item, index)"></i>
             </span>
-            <span class="append">待添加</span>
+            <span class="append" v-show="functionLabelList.length < 5">待添加</span>
           </dd>
         </dl>
         <dl>

@@ -14,7 +14,7 @@
               {{item}}
               <i class="el-icon-error" @click="functionbind(item, index)"></i>
             </span>
-            <span class="append">Add</span>
+            <span class="append" v-show="functionLabelList.length < 5">Add</span>
           </dd>
         </dl>
         <dl>

@@ -149,7 +149,7 @@
             <img src="../../images/home/nav/xl.png" alt>
           </span>
           <span>
-            odds: hong kong
+            odds: HongKong
             <img src="../../images/home/nav/xl.png" alt>
           </span>
         </div>
@@ -316,7 +316,7 @@ export default {
   }
 }
 .bclx-list {
-  margin-left: 60px !important;
+  margin-left: 10px !important;
 }
 .ct-going {
   .more {

@@ -1,14 +1,14 @@
 <template>
   <div class="navigation">
     <img
-        src="../../images/home/nav/video.png"
-        alt
-        width="360px"
-        v-show="isWindowSpring"
-        :class="{'video-spring-window': isWindowSpring}"
-        @mousedown="move"
-        @dblclick="isWindowSpring = false"
-      >
+      src="../../images/home/nav/video.png"
+      alt
+      width="360px"
+      v-show="isWindowSpring"
+      :class="{'video-spring-window': isWindowSpring}"
+      @mousedown="move"
+      @dblclick="isWindowSpring = false"
+    >
     <div class="top-title">
       <div class="search-inp">
         <input type="text" placeholder="刺激战场" maxlength="20">
@@ -42,95 +42,45 @@
     <div class="content flex">
       <div class="c-lf">
         <ul class="main-list">
-          <li class="gq" :class="{'active': listIndex === 1}" v-on:click.stop="listBind(1)">
-            <span>滚球</span>
+          <li
+            v-for="(item, index) in gameList"
+            :key="index"
+            :class="[listIndex === index ? item.css + ' active' : item.css]"
+            v-on:click.stop="listBind(index)"
+          >
+            <span>{{item.name}}</span>
 
-            <ul class="list-2" v-show="listIndex === 1">
-              <li class="yxlm" :class="{'active': listIndex3 === 1}" v-on:click.stop="listBind3(1)">
-                <span>
-                  英雄联盟
-                  <em>49</em>
-                </span>
+            <ul class="list-2" v-show="listIndex === index">
+              <li v-for="(item2, index2) in item.children"
+                :key="index2"
+                :class="[listIndex3 === index2 ? item2.css + ' active' : item2.css]"
+                v-on:click.stop="listBind3(index2)">
+                  <span>
+                    {{item2.name}}
+                    <em>{{item2.num}}</em>
+                  </span>
 
-                <ul class="list-3" v-show="listIndex3 === 1">
-                  <li :class="{'active': listIndex4 === 1}" v-on:click.stop="listIndex4 = 1">
-                    LCK
-                    <em>1</em>
-                  </li>
-                  <li :class="{'active': listIndex4 === 2}" v-on:click.stop="listIndex4 = 2">
-                    LGK
-                    <em>6</em>
-                  </li>
-                </ul>
-              </li>
-              <li class="wzry" :class="{'active': listIndex3 === 2}" v-on:click.stop="listBind3(2)">
-                <span>
-                  王者荣耀
-                  <em>11</em>
-                </span>
-              </li>
-              <li class="jdqs" :class="{'active': listIndex3 === 3}" v-on:click.stop="listBind3(3)">
-                <span>
-                  绝地求生
-                  <em>31</em>
-                </span>
-              </li>
-              <li class="zq" :class="{'active': listIndex3 === 4}" v-on:click.stop="listBind3(4)">
-                <span>
-                  足球
-                  <em>17</em>
-                </span>
-              </li>
-              <li class="lq" :class="{'active': listIndex3 === 5}" v-on:click.stop="listBind3(5)">
-                <span>
-                  篮球
-                  <em>11</em>
-                </span>
-              </li>
-              <li class="swxf" :class="{'active': listIndex3 === 6}" v-on:click.stop="listBind3(6)">
-                <span>
-                  守望先锋
-                  <em>17</em>
-                </span>
-              </li>
-              <li class="lscs" :class="{'active': listIndex3 === 7}" v-on:click.stop="listBind3(7)">
-                <span>
-                  炉石传说
-                  <em>14</em>
-                </span>
-              </li>
-              <li class="mszb" :class="{'active': listIndex3 === 8}" v-on:click.stop="listBind3(8)">
-                <span>
-                  魔兽争霸Ⅲ
-                  <em>31</em>
-                </span>
-              </li>
+                  <ul class="list-3" v-show="listIndex3 === index2">
+                    <li v-for="(item3, index3) in item2.children"
+                        :key="index3"
+                        :class="{'active': listIndex4 === index3}"
+                        v-on:click.stop="listIndex4 = index3">
+                      {{item3.name}}
+                      <em>{{item3.num}}</em>
+                    </li>
+                  </ul>
+                </li>
             </ul>
           </li>
-          <li class="jr" :class="{'active': listIndex === 2}" v-on:click.stop="listBind(2)">
-            <span>今日</span>
-          </li>
-          <li class="zp" :class="{'active': listIndex === 3}" v-on:click.stop="listBind(3)">
-            <span>早盘</span>
-          </li>
-          <li class="hot" :class="{'active': listIndex === 4}" v-on:click.stop="listBind(4)">
-            <span>猜你喜欢</span>
-          </li>
-          <li class="like" :class="{'active': listIndex === 5}" v-on:click.stop="listBind(5)">
-            <span>我的推荐</span>
-          </li>
-          <li class="all" :class="{'active': listIndex === 6}" v-on:click.stop="listBind(6)">
-            <span>所有赛事</span>
-          </li>
-          <li class="dzym" v-show="listIndex === 7">
+          <li class="dzym" v-show="listIndex === 'zdy'">
             <dl>
               <dt class="title">定制我的专属页面</dt>
               <dd>
                 <dl>
                   <dt>功能选择栏</dt>
                   <dd>
-                    <span v-for="(item, index) in functionLabelList" v-bind:key="index">
-                      {{item}}
+                    <span v-for="(item, index) in functionList" :key="index">
+                      {{item.name}}
                       <i class="el-icon-error" @click="functionbind(item, index)"></i>
                     </span>
                   </dd>
@@ -138,20 +88,20 @@
                 <dl>
                   <dt>更多分类</dt>
                   <dd>
-                    <span v-for="(item, index) in moreClassifyLabelList" v-bind:key="index">
-                      {{item}}
+                    <span v-for="(item, index) in moreClassifyLabelList" :key="index">
+                      {{item.name}}
                       <i class="el-icon-circle-plus" @click="moreClassify(item, index)"></i>
                     </span>
                   </dd>
                 </dl>
                 <div class="btn-group">
-                  <button class="active">完成</button>
-                  <button>取消</button>
+                  <button class="active" @click="doneAdd">完成</button>
+                  <button @click="listIndex = false">取消</button>
                 </div>
               </dd>
             </dl>
           </li>
-          <li class="zdy" :class="{'active': listIndex === 7}" v-on:click.stop="listBind(7)">
+          <li class="zdy" :class="{'active': listIndex === 7}" v-on:click.stop="listBind('zdy')">
             <span>自定义运动类型</span>
           </li>
         </ul>
@@ -191,12 +141,7 @@
               </div>
               <a href="javascript:;" @click="rightPage = 'chatRoom'; rightBetListType = 'lts'">进入直播间</a>
               <span class="cspn" @click="isWindowSpring = true">弹窗</span>
-              <img
-                class="cspn"
-                @click="isWindowSpring = true"
-                src="../../images/home/right/enlarge.png"
-                alt
-              >
+              <img class="cspn" src="../../images/home/right/enlarge.png" alt>
             </div>
           </div>
         </div>
@@ -204,7 +149,7 @@
           src="../../images/home/right/enter-video.png"
           alt
           class="go-chat-room-nav"
-          @click="rightPage = 'chatRoom'"
+          @click="rightPage = 'chatRoom'; rightBetListType = 'lts'"
           v-show="rightPage !== 'chatRoom'"
         >
         <div class="game-info">
@@ -229,12 +174,9 @@
                   <p class="ct-going">
                     <span class="two-going">第二局进行中</span>
                     <span class="pic-icon">
-                      <img src="../../images/home/nav/home.png" alt>
-                      <img
-                        src="../../images/home/nav/home.png"
-                        title="聊天室"
-                        @click="rightPage = 'chatRoom';rightBetListType = 'lts'"
-                      >
+                      <img src="../../images/home/nav/home.png">
+                      <img src="../../images/home/nav/video-icon.png" alt title="聊天室"
+                        @click="rightPage = 'chatRoom';rightBetListType = 'lts'">
                       <img src="../../images/home/nav/qs.png" alt>
                       <img src="../../images/home/nav/5666.png" alt>
                     </span>
@@ -327,13 +269,11 @@
           </article>
 
           <article class="menus">
-            <h1>
-              自定义菜单
-            </h1>
+            <h1>自定义菜单</h1>
             <ul class>
               <li class="cz" :class="{'active': menuIndex === 1}" @click="menuIndex = 1">充值</li>
               <li class="tq" :class="{'active': menuIndex === 2}" @click="menuIndex = 2">提取</li>
-              <li class="zz" :class="{'active': menuIndex === 3}" @click="menuIndex = 3">转账</li>
+              <li class="zz" :class="{'active': menuIndex === 3}" @click="menuIndex = 3">排行榜</li>
               <li class="zxkf" :class="{'active': menuIndex === 4}" @click="menuIndex = 4">在线客服</li>
               <li class="zzkf" :class="{'active': menuIndex === 5}" @click="menuIndex = 5">自助客服</li>
               <li class="wdyh" :class="{'active': menuIndex === 6}" @click="menuIndex = 6">我的优惠</li>
@@ -344,8 +284,8 @@
           </article>
         </div>
 
-        <div class="content-2 relative" v-if="rightPage === 'chatRoom'">
-          <ul class="title" @click="betList2=false;">
+        <div class="content-2 relative" v-if="rightPage === 'chatRoom'" @click="betList2=false">
+          <ul class="title">
             <li
               :class="{'active': rightBetListType === item.type}"
               v-on:click.stop="rightListNav(item.type)"
@@ -353,10 +293,11 @@
               v-bind:key="index"
             >
               {{item.name}}
-              <i class="el-icon-caret-bottom" v-show="item.children"></i>
-              <ul class="list-2" v-show="betList2">
+              <i class="el-icon-caret-bottom" v-show="item.children && !betList2" @click="betList2 = index + 1"></i>
+              <i class="el-icon-caret-top" v-show="item.children && betList2" @click="betList2 = !betList2"></i>
+              <ul class="list-2" v-show="betList2 === index + 1">
                 <li
-                  @click="betListIndex = (ind2 +1)"
+                  @click="betListIndex = (ind2 +1);betList2=false;"
                   v-for="(item2, ind2) in item.children"
                   v-bind:key="ind2"
                 >{{item2}}</li>
@@ -572,20 +513,51 @@ export default {
       lists: [
         "由于万博体育延时结算，如果无法签到(2019年1月11日之前无法签到的会员)，请联系客服进行补签。"
       ],
-      functionLabelList: ["滚球", "今日", "今日", "早盘", "我的", "投注列表"],
-      moreClassifyLabelList: [
-        "热门推荐",
-        "今日排行",
-        "英雄联盟",
-        "DUTA2",
-        "王者荣耀",
-        "绝地求生"
+      moreClassifyLabelList: JSON.parse(localStorage.getItem('moreList')) || [
+        {name: "热门推荐", css: "like"},
+        {name: "今日排行", css: "like"},
+        {name: "英雄联盟", css: "like"},
+        {name: "DUTA2", css: "like"},
+        {name: "王者荣耀", css: "like"},
+        {name: "绝地求生", css: "like"}
       ],
+      gameList: JSON.parse(localStorage.getItem('gameList')) || [
+        {
+          name: "滚球",
+          css: "gq",
+          children: [
+            {
+              name: "英雄联盟",
+              num: 49,
+              children: [
+                { name: "LCK", num: 6},
+                { name: "LGK", num: 1}
+              ], css: "yxlm" 
+            },
+            { name: "王者荣耀", css: "wzry"  },
+            { name: "绝地求生", css: "jdqs"  },
+            { name: "足球", css: "zq"  },
+            { name: "篮球", css: "lq"  },
+            { name: "守望先锋", css: "swxf"  },
+            { name: "炉石传说", css: "lscs"  },
+            { name: "魔兽争霸Ⅲ", css: "mszb"  }
+          ]
+        },
+        { name: "今日", css: "jr" },
+        { name: "早盘", css: "zp" },
+        { name: "猜你喜欢", css: "hot" },
+        { name: "我的推荐", css: "like" },
+        { name: "所有赛事", css: "all" }
+      ],
+      functionList: [],
       priceList: ["100", "200", "1000", "2000", "3000"],
       rightNavList: this.$store.state.rightNavList || []
     };
   },
-  created() {},
+  created() {
+    this.functionList = JSON.parse(JSON.stringify(this.gameList));
+    this.rightNavList
+  },
   computed: {
     getUserIcons() {
       return this.$store.state.rightNavList;
@@ -609,7 +581,7 @@ export default {
   },
   methods: {
     move(e) {
-      let odiv = e.target; 
+      let odiv = e.target;
 
       //算出鼠标相对元素的位置
       let disX = e.clientX - odiv.offsetLeft;
@@ -630,9 +602,15 @@ export default {
         document.onmouseup = null;
       };
     },
+    doneAdd: function(){
+      this.gameList = this.functionList;
+      this.listIndex = false;
+      localStorage.setItem('gameList', JSON.stringify(this.gameList));
+      localStorage.setItem('moreList', JSON.stringify(this.moreClassifyLabelList))
+    },
     rightListNav: function(type) {
       this.rightBetListType = type;
-      if (type === "tzlb") this.betList2 = !this.betList2;
+      // if (type === "tzlb") this.betList2 = !this.betList2;
     },
     rechargeBind: function(ind) {
       this.operateIndex = ind;
@@ -640,8 +618,8 @@ export default {
       this.dialogIndex = ind;
     },
     moreClassify: function(data, ind) {
-      this.functionLabelList.push(data);
-      Array.from(new Set(this.functionLabelList));
+      this.functionList.push(data);
+      Array.from(new Set(this.functionList));
       this.moreClassifyLabelList = this.objectEach(
         this.moreClassifyLabelList,
         ind
@@ -649,7 +627,7 @@ export default {
     },
     functionbind: function(data, ind) {
       this.moreClassifyLabelList.push(data);
-      this.functionLabelList = this.objectEach(this.functionLabelList, ind);
+      this.functionList = this.objectEach(this.functionList, ind);
     },
     objectEach: function(data, ind) {
       let list = [];
@@ -659,7 +637,9 @@ export default {
       });
       return list;
     },
-    listBind: function(ind = 1) {
+    listBind: function(ind) {
+      // let ind = ('zdy' === index) ? this.gameList.length : index;
+      // console.log(ind);
       this.listIndex = this.listIndex === ind ? !this.listIndex : ind;
     },
     listBind2: function(ind = 1) {

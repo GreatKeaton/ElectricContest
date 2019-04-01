@@ -1,10 +1,10 @@
 <template>
-  <div class="chat-room">
+  <div class="chat-room relative" @click="isPriceSet=false;">
     <div class="chat-content">
       <dl v-for="(item,index) in listDate" v-bind:key="index">
         <dt>{{item.time}}</dt>
         <dd>
-          <i :class="'grade'+item.grade"></i>
+          <i :class="'grade'+item.grade" @click="isMsgbox=true;isUserLevel=true"></i>
           <span class="user-name">{{item.username}}:</span>
           <span class="item-content">{{item.content}}</span>
         </dd>
@@ -14,11 +14,19 @@
       <div>
         <span class="user-query">电竞大师</span>
         <span class="icon-group">
-          <img src="../../../images/home/right/icon5.png" alt="">
-          <img src="../../../images/home/right/icon6.png" alt="" @click="isPresentationPoints = !isPresentationPoints">
-          <img src="../../../images/home/right/icon7.png" alt="">
-          <img src="../../../images/home/right/icon8.png" alt="">
-          <img src="../../../images/home/right/smile.png" alt="">
+          <img
+            src="../../../images/home/right/icon5.png"
+            alt
+            @click="isNotes = true;"
+          >
+          <img
+            src="../../../images/home/right/icon6.png"
+            alt
+            @click="isPresentationPoints = !isPresentationPoints"
+          >
+          <img src="../../../images/home/right/icon7.png" alt>
+          <img src="../../../images/home/right/icon8.png" alt>
+          <img src="../../../images/home/right/smile.png" alt>
         </span>
       </div>
       <div class="report-input">
@@ -28,10 +36,16 @@
     </div>
 
     <article class="presentation-points" v-show="isPresentationPoints">
-      <h1>赠送积分红包 <i class="el-icon-close right cspn" @click="isPresentationPoints = false"></i></h1>
+      <h1>
+        Giving bonus points
+        <i
+          class="el-icon-close right cspn"
+          @click="isPresentationPoints = false"
+        ></i>
+      </h1>
       <div>
         <div class="bx">
-          <img src="../../../images/home/right/treasure-box.png" alt="">
+          <img src="../../../images/home/right/treasure-box.png" alt>
           <span class="c-yellow right">送出你的积分，分享你的喜悦！30秒后直播间内用户可参与领奖</span>
         </div>
         <div class="point-mode">
@@ -48,18 +62,118 @@
               <span>(随机分布)</span>
             </div>
           </div>
-          <p>!赠送满<em>50</em>积分触发大礼物特效</p>
-          <p>!赠送满<em>300</em>积分触发世界横幅</p>
+          <p>
+            !赠送满
+            <em>50</em>积分触发大礼物特效
+          </p>
+          <p>
+            !赠送满
+            <em>300</em>积分触发世界横幅
+          </p>
           <div class="point-inp">
-            <input type="text" name="" id="">
+            <input type="text" name id>
             <a href="javascript:;">赠送</a>
           </div>
           <ul class="flex">
-            <li :class="{'active': priceNum === item}" @click="priceNum = item" v-for="(item, index) in priceNumArr" v-bind:key="index">{{item}}</li>
+            <li
+              :class="{'active': priceNum === item}"
+              @click="priceNum = item"
+              v-for="(item, index) in priceNumArr"
+              v-bind:key="index"
+            >{{item}}</li>
           </ul>
         </div>
       </div>
     </article>
+
+    <div class="my-notes" v-show="isNotes">
+      <h1>My note</h1>
+      <h2>2019 LCK Spring</h2>
+      <i class="close-notes el-icon-error" @click="isNotes = false"></i>
+      <div class="area-list">
+        <dl class="lement-box" v-for="(item, index) in new Array(10)" v-bind:key="index">
+          <dt @click="isMsgbox = true; isNotesMsg = true;">GAL</dt>
+          <dd>
+            <div class="confirmed">@ 1.81</div>
+            <p>
+              <i></i>Winner of the competition
+              <span class="right">LOL</span>
+            </p>
+            <p>
+              <b>GAL</b>
+              <b>VS</b>
+              <b>GS</b>
+            </p>
+            <p>TCL-Turkey Champions League-2019 Winter Tournament</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="msg-box" v-show="isMsgbox">
+      <!-- 荣耀等级详情 -->
+      <div class="user-detail tx-ct" v-show="isUserLevel">
+        <i class="el-icon-close right cspn" @click="isMsgbox=false;isUserLevel=false;"></i>
+        <img src="../../../images/home/right/user-icon.jpg" alt>
+        <p>
+          <span class="c-yellow">Emperor patrol</span>
+          <span class="lift">108</span>
+        </p>
+        <p class="level">
+          <img src="../../../images/home/right/user-level.jpg" alt>
+          <span>Win rate：40%</span>
+        </p>
+        <p>Fan：120</p>
+        <a href="javascript:;" class="follow-btn" @click="isMsgbox=false;isUserLevel=false;">Follow</a>
+      </div>
+      <!-- 是否确认跟投 -->
+      <div class="heel-throw" v-show="isHeelThrow">
+        <div class="title">
+          <h1>Confirm with vote?？</h1>
+          <b>2019LCK Spring</b>
+        </div>
+        <ul>
+          <li>Player nickname：{{heelThrowData.username}}</li>
+          <li>
+            Player achievement：
+            <i :class="'grade'+heelThrowData.grade"></i>
+          </li>
+          <li>Player win rate：{{heelThrowData.username}}</li>
+          <li>Player event：{{heelThrowData.username}}</li>
+          <li>
+            Player content：
+            <span class="item-content">{{heelThrowData.content}}</span>
+          </li>
+          <li>Bet amount：{{heelThrowData.price || '999'}}</li>
+          <li>
+            Bet amount：
+            <span
+              v-show="!isPriceSet"
+              v-on:click.stop="isPriceSet = !isPriceSet"
+            >{{heelThrowData.priceBet || '999'}}</span>
+            <input
+              class="price-input"
+              type="text"
+              v-show="isPriceSet"
+              v-model="heelThrowData.priceBet"
+              v-on:click.stop
+            >
+          </li>
+        </ul>
+        <div class="group-btn">
+          <button>Confirmation?</button>
+          <button @click="isMsgbox=false;isHeelThrow=false;">cancel</button>
+        </div>
+      </div>
+      <!-- 是否确认晒单 -->
+      <div class="msg-content" v-show="isNotesMsg">
+        <h1>Confirm the drying out</h1>
+        <p>Expert Winner of the competition 608</p>
+        <div class="btn-group">
+          <button>confirm</button>
+          <button @click="isNotesMsg=false;isMsgbox=false;">cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -69,6 +183,15 @@ export default {
       isPresentationPoints: false,
       priceNumArr: [1, 10, 66, 1314, 9999],
       priceNum: 66,
+      isMsgbox: false,
+      isNotes: false,
+      isFollow: false,
+      isQueryUser: false,
+      isUserLevel: false,
+      isNotesMsg: false,
+      isHeelThrow: false,
+      isPriceSet: false,
+      heelThrowData: {},
       listDate: [
         {
           time: "2019-02-03 09:50",
@@ -96,12 +219,20 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    bsBind: function(item) {
+      this.heelThrowData = item;
+      this.isHeelThrow = true;
+      this.isMsgbox = true;
+    }
   }
 };
 </script>
 <style lang="less" scope>
 @import "../../../styles/main";
 @import "../../../styles/common";
+@import "../../../styles/share";
 .chat-room {
   height: 724px;
   .relative;
@@ -187,12 +318,12 @@ export default {
       cursor: pointer;
       .tx-ct;
     }
-    .icon-group{
+    .icon-group {
       color: #fff;
       .right;
       margin-right: 15px;
-      img{
-      .cspn;
+      img {
+        .cspn;
         padding-right: 5px;
       }
     }
@@ -225,13 +356,13 @@ export default {
       }
     }
   }
-  .presentation-points{
+  .presentation-points {
     .absolute;
     bottom: 135px;
     width: 100%;
     background: #0f233b;
 
-    h1{
+    h1 {
       background: #1c4b77;
       color: #fff;
       padding-left: 15px;
@@ -239,20 +370,20 @@ export default {
       font-size: 18px;
       line-height: 35px;
 
-      .el-icon-close{
+      .el-icon-close {
         padding-top: 8px;
         padding-right: 10px;
         font-weight: bold;
       }
     }
-    &>div{
+    & > div {
       padding-top: 15px;
-      .bx{
-        &>img{
+      .bx {
+        & > img {
           width: 80px;
           margin-left: 10px;
         }
-        .c-yellow{
+        .c-yellow {
           color: #ebe859;
           font-size: 12px;
           width: 180px;
@@ -260,23 +391,23 @@ export default {
           padding-top: 15px;
         }
       }
-      .point-mode{
+      .point-mode {
         background: #102b46;
         padding-top: 10px;
         color: #fff;
         padding-left: 15px;
         padding-right: 15px;
 
-        .point-inp{
+        .point-inp {
           .relative;
-          input{
+          input {
             background: #08101d;
             height: 30px;
             width: 100%;
             color: #fff;
             border-color: #08101d;
           }
-          a{
+          a {
             background: #247fd0;
             width: 50px;
             height: 30px;
@@ -292,36 +423,36 @@ export default {
           }
         }
 
-        .query-mode{
+        .query-mode {
           .flex;
           margin-top: 10px;
-          &>div{
+          & > div {
             flex: 1;
             margin-left: 10px;
             margin-right: 10px;
 
-            &>input{
+            & > input {
               height: 10px;
             }
-            &>span{
+            & > span {
               .block;
               font-size: 12px;
               padding-left: 20px;
               padding-top: -5px;
             }
           }
-          & + p{
+          & + p {
             font-size: 12px;
             margin-top: 10px;
             line-height: 25px;
-            em{
+            em {
               color: #ebe859;
               padding: 0 5px;
             }
-            & + p{
+            & + p {
               margin-bottom: 10px;
               font-size: 12px;
-              em{
+              em {
                 color: #ebe859;
                 padding: 0 5px;
               }
@@ -329,9 +460,9 @@ export default {
           }
         }
 
-        &>ul{
+        & > ul {
           padding: 15px 0;
-          li{
+          li {
             flex: 1;
             border: 1px solid #fff;
             padding: 5px 10px;
@@ -342,7 +473,7 @@ export default {
             font-size: 12px;
             .cspn;
 
-            &.active{
+            &.active {
               border-color: #3d82bb;
               background: #3d82bb;
             }
@@ -350,6 +481,11 @@ export default {
         }
       }
     }
+  }
+  .my-notes {
+    .absolute;
+    top: 0;
+    left: 0;
   }
 }
 </style>

@@ -40,7 +40,7 @@
     </div>
     <!-- 对阵详情 -->
     <div class="squad-detail">
-      <img src="../../../images/home/right-en/data-top.jpg" alt="">
+      <img src="../../../images/home/right/data-top.png" alt="">
 
       <div class="progress-group">
         <span>100% Winning Rate</span>

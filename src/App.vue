@@ -23,14 +23,14 @@ export default {
   created() {
     this.$store.state.rightNavList = [
       { name: "投注列表", children: ["投注历史", "我的投注"], type: "tzlb" },
-      { name: "聊天室", type: "lts" },
+      { name: "聊天室", children: ["特級锦标赛(DATA2)", "特級锦标赛(DATA2)"], type: "lts" },
       { name: "晒单区", type: "sdq" },
       { name: "赛况", type: "sk" },
       { name: "阵容", type: "zr" }
     ];
     this.$store.state.rightEnNavList = [
       { name: "Bet List", children: ["Bet History", "My Bet"], type: "tzlb" },
-      { name: "Chat Room", type: "lts" },
+      { name: "Chat Room", children: ["DATA1", "DATA2"], type: "lts" },
       { name: "Share Bet", type: "sdq" },
       { name: "Match", type: "sk" },
       { name: "Formation", type: "zr" }

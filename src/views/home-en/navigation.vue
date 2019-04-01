@@ -42,94 +42,44 @@
     <div class="content flex">
       <div class="c-lf">
         <ul class="main-list">
-          <li class="gq" :class="{'active': listIndex === 1}" v-on:click.stop="listBind(1)">
-            <span>Snowball</span>
+          <li
+            v-for="(item, index) in gameList"
+            :key="index"
+            :class="[listIndex === index ? item.css + ' active' : item.css]"
+            v-on:click.stop="listBind(index)"
+          >
+            <span>{{item.name}}</span>
 
-            <ul class="list-2" v-show="listIndex === 1">
-              <li class="yxlm" :class="{'active': listIndex3 === 1}" v-on:click.stop="listBind3(1)">
-                <span>
-                  LOL (league of legend)
-                  <em>49</em>
-                </span>
+            <ul class="list-2" v-show="listIndex === index">
+              <li v-for="(item2, index2) in item.children"
+                :key="index2"
+                :class="[listIndex3 === index2 ? item2.css + ' active' : item2.css]"
+                v-on:click.stop="listBind3(index2)">
+                  <span>
+                    {{item2.name}}
+                    <em>{{item2.num}}</em>
+                  </span>
 
-                <ul class="list-3" v-show="listIndex3 === 1">
-                  <li :class="{'active': listIndex4 === 1}" v-on:click.stop="listIndex4 = 1">
-                    LCK
-                    <em>1</em>
-                  </li>
-                  <li :class="{'active': listIndex4 === 2}" v-on:click.stop="listIndex4 = 2">
-                    LGK
-                    <em>6</em>
-                  </li>
-                </ul>
-              </li>
-              <li class="wzry" :class="{'active': listIndex3 === 2}" v-on:click.stop="listBind3(2)">
-                <span>
-                  AOV
-                  <em>11</em>
-                </span>
-              </li>
-              <li class="jdqs" :class="{'active': listIndex3 === 3}" v-on:click.stop="listBind3(3)">
-                <span>
-                  PUBG
-                  <em>31</em>
-                </span>
-              </li>
-              <li class="zq" :class="{'active': listIndex3 === 4}" v-on:click.stop="listBind3(4)">
-                <span>
-                  soccer (football)
-                  <em>17</em>
-                </span>
-              </li>
-              <li class="lq" :class="{'active': listIndex3 === 5}" v-on:click.stop="listBind3(5)">
-                <span>
-                  basketball
-                  <em>11</em>
-                </span>
-              </li>
-              <li class="swxf" :class="{'active': listIndex3 === 6}" v-on:click.stop="listBind3(6)">
-                <span>
-                  overwatch
-                  <em>17</em>
-                </span>
-              </li>
-              <li class="lscs" :class="{'active': listIndex3 === 7}" v-on:click.stop="listBind3(7)">
-                <span>
-                  Hearthstone
-                  <em>14</em>
-                </span>
-              </li>
-              <li class="mszb" :class="{'active': listIndex3 === 8}" v-on:click.stop="listBind3(8)">
-                <span>
-                  Warcraft III
-                  <em>31</em>
-                </span>
-              </li>
+                  <ul class="list-3" v-show="listIndex3 === index2">
+                    <li v-for="(item3, index3) in item2.children"
+                        :key="index3"
+                        :class="{'active': listIndex4 === index3}"
+                        v-on:click.stop="listIndex4 = index3">
+                      {{item3.name}}
+                      <em>{{item3.num}}</em>
+                    </li>
+                  </ul>
+                </li>
             </ul>
           </li>
-          <li class="jr" :class="{'active': listIndex === 2}" v-on:click.stop="listBind(2)">
-            <span>today</span>
-          </li>
-          <li class="zp" :class="{'active': listIndex === 3}" v-on:click.stop="listBind(3)">
-            <span>early bet</span>
-          </li>
-          <li class="hot" :class="{'active': listIndex === 4}" v-on:click.stop="listBind(4)">
-            <span>you may also like</span>
-          </li>
-          <li class="like" :class="{'active': listIndex === 5}" v-on:click.stop="listBind(5)">
-            <span>my recommendation</span>
-          </li>
-          <li class="all" :class="{'active': listIndex === 6}" v-on:click.stop="listBind(6)">
-            <span>all matches</span>
-          </li>
-          <li class="dzym" v-show="listIndex === 7">
+          <li class="dzym" v-show="listIndex === 'zdy'">
             <dl>
               <dt class="title">Customize exclusive page</dt>
               <dd>
                 <dl>
                   <dt>Function selection bar</dt>
                   <dd>
-                    <span v-for="(item, index) in functionLabelList" v-bind:key="index">
+                    <span v-for="(item, index) in functionList" v-bind:key="index">
                       {{item}}
                       <i class="el-icon-error" @click="functionbind(item, index)"></i>
                     </span>
@@ -151,7 +101,7 @@
               </dd>
             </dl>
           </li>
-          <li class="zdy" :class="{'active': listIndex === 7}" v-on:click.stop="listBind(7);">
+          <li class="zdy" :class="{'active': listIndex === 7}" v-on:click.stop="listBind('zdy')">
             <span>self setting sports type</span>
           </li>
         </ul>
@@ -187,7 +137,7 @@
               </div>
               <a href="javascript:;" @click="rightPage = 'chatRoom'; rightBetListType = 'lts'">进入直播间</a>
               <span @click="isWindowSpring = true">弹窗</span>
-              <img @click="isWindowSpring = true" src="../../images/home/right/enlarge.png" alt="">
+              <img src="../../images/home/right/enlarge.png" alt="">
             </div>
           </div>
         </div>
@@ -222,7 +172,7 @@
                     <span class="pic-icon cspn">
                       <img src="../../images/home/nav/home.png" alt>
                       <img
-                        src="../../images/home/nav/home.png"
+                        src="../../images/home/nav/video-icon.png"
                         title="chatroom"
                         @click="rightPage = 'chatRoom';rightBetListType = 'lts'"
                       >
@@ -321,7 +271,7 @@
             <ul class>
               <li class="cz" :class="{'active': menuIndex === 1}" @click="menuIndex = 1">top-up</li>
               <li class="tq" :class="{'active': menuIndex === 2}" @click="menuIndex = 2">withdraw</li>
-              <li class="zz" :class="{'active': menuIndex === 3}" @click="menuIndex = 3">transfer</li>
+              <li class="zz" :class="{'active': menuIndex === 3}" @click="menuIndex = 3">ranking</li>
               <li class="zxkf" :class="{'active': menuIndex === 4}" @click="menuIndex = 4">
                 <span>customer service</span>
               </li>
@@ -338,8 +288,8 @@
           </article>
         </div>
 
-        <div class="content-2 relative" v-if="rightPage === 'chatRoom'">
-          <ul class="title" @click="betList2=false;">
+        <div class="content-2 relative" v-if="rightPage === 'chatRoom'" @click="betList2=false">
+          <ul class="title">
             <li
               :class="{'active': rightBetListType === item.type}"
               v-on:click.stop="rightListNav(item.type)"
@@ -347,10 +297,11 @@
               v-bind:key="index"
             >
               {{item.name}}
-              <i class="el-icon-caret-bottom" v-show="item.children"></i>
-              <ul class="list-2" v-show="betList2">
+              <i class="el-icon-caret-bottom" v-show="item.children && !betList2" @click="betList2 = index + 1"></i>
+              <i class="el-icon-caret-top" v-show="item.children && betList2" @click="betList2 = !betList2"></i>
+              <ul class="list-2" v-show="betList2 === index + 1">
                 <li
-                  @click="betListIndex = (ind2 +1)"
+                  @click="betListIndex = (ind2 +1);betList2=false;"
                   v-for="(item2, ind2) in item.children"
                   v-bind:key="ind2"
                 >{{item2}}</li>
@@ -380,7 +331,7 @@
           <ul>
             <li @click="dialogIndex = 1" :class="{'active': dialogIndex === 1}">top-up</li>
             <li @click="dialogIndex = 2" :class="{'active': dialogIndex === 2}">withdraw</li>
-            <li @click="dialogIndex = 3" :class="{'active': dialogIndex === 3}">transfer</li>
+            <!-- <li @click="dialogIndex = 3" :class="{'active': dialogIndex === 3}">transfer</li> -->
           </ul>
         </h1>
         <!-- 充值开始 -->
@@ -570,17 +521,48 @@ export default {
       lists: [
         "Due to the delay settlement of Wanbo Sports, if you are unable to sign in (members who cannot sign in before January 11, 2019), please contact customer service for a replacement."
       ],
-      functionLabelList: [
-        "Snowball",
-        "today",
-        "early bet",
-        "mine",
-        "Betting list"
+      moreClassifyLabelList: JSON.parse(localStorage.getItem('moreListEn')) || [
+        {name: "Recom", css: "like"},
+        {name: "Today", css: "like"},
+        {name: "LOL", css: "like"},
+        {name: "DUTA2", css: "like"},
+        {name: "AOV", css: "like"},
+        {name: "PUBG", css: "like"}
       ],
-      moreClassifyLabelList: ["Recom", "Today", "LOL", "DUTA2", "AOV", "PUBG"]
+      gameList: JSON.parse(localStorage.getItem('gameListEn')) || [
+        {
+          name: "Snowball",
+          css: "gq",
+          children: [
+            {
+              name: "LOL",
+              num: 49,
+              children: [
+                { name: "LCK", num: 6},
+                { name: "LGK", num: 1}
+              ], css: "yxlm" 
+            },
+            { name: "AOV", css: "wzry"  },
+            { name: "PUBG", css: "jdqs"  },
+            { name: "soccer", css: "zq"  },
+            { name: "basketball", css: "lq"  },
+            { name: "overwatch", css: "swxf"  },
+            { name: "Hearthstone", css: "lscs"  },
+            { name: "Warcraft III", css: "mszb"  }
+          ]
+        },
+        { name: "today", css: "jr" },
+        { name: "early bet", css: "zp" },
+        { name: "you may also like", css: "hot" },
+        { name: "my recommendation", css: "like" },
+        { name: "all matches", css: "all" }
+      ],
+      functionList: [],
     };
   },
-  created() {},
+  created() {
+    this.functionList = JSON.parse(JSON.stringify(this.gameList));
+  },
   computed: {
     getUserIcons() {
       return this.$store.state.rightEnNavList;
@@ -625,9 +607,15 @@ export default {
         document.onmouseup = null;
       };
     },
+    doneAdd: function(){
+      this.gameList = this.functionList;
+      this.listIndex = false;
+      localStorage.setItem('gameListEn', JSON.stringify(this.gameList));
+      localStorage.setItem('moreListEn', JSON.stringify(this.moreClassifyLabelList))
+    },
     rightListNav: function(type) {
       this.rightBetListType = type;
-      if (type === "tzlb") this.betList2 = !this.betList2;
+      // if (type === "tzlb") this.betList2 = !this.betList2;
     },
     rechargeBind: function(ind) {
       this.operateIndex = ind;
@@ -635,8 +623,8 @@ export default {
       this.dialogIndex = ind;
     },
     moreClassify: function(data, ind) {
-      this.functionLabelList.push(data);
-      Array.from(new Set(this.functionLabelList));
+      this.functionList.push(data);
+      Array.from(new Set(this.functionList));
       this.moreClassifyLabelList = this.objectEach(
         this.moreClassifyLabelList,
         ind
@@ -644,7 +632,7 @@ export default {
     },
     functionbind: function(data, ind) {
       this.moreClassifyLabelList.push(data);
-      this.functionLabelList = this.objectEach(this.functionLabelList, ind);
+      this.functionList = this.objectEach(this.functionList, ind);
     },
     objectEach: function(data, ind) {
       let list = [];
@@ -687,6 +675,9 @@ export default {
       vertical-align: top;
       padding-top: 5px;
       line-height: normal !important;
+      li{
+        line-height: 30px;
+      }
     }
   }
 }
