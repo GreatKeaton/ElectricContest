@@ -19,8 +19,8 @@
             @click="routerTo('home', 'home')"
           >
         </div>
-        <div class="setting">
-          <div class="setItem pointer" @click="funcSetDialogVisible = true">功能设定</div>
+        <div class="setting" v-show="!isNotHeader">
+          <div class="setItem pointer" @click="funcSetDialogVisible = true">功能设定{{isNotHeader}}</div>
           <div class="setItem pointer" @click="betRecordDialogVisible = true">投注记录</div>
           <select
             name
@@ -34,7 +34,7 @@
           </select>
         </div>
       </div>
-      <ul class="navItemBox cspn">
+      <ul class="navItemBox cspn" v-show="!isNotHeader">
         <li
           v-for="(item,index) in list"
           :key="index"
@@ -445,6 +445,7 @@ export default {
       betSetIndex: 0,
       routhPath: this.$route.name,
       language: this.$route.params.order || "home",
+      isNotHeader: this.routhPath === 'streamline' || this.routhPath === 'streamlineEn',
       list: [
         {
           value: "赛事",
@@ -512,6 +513,7 @@ export default {
   watch: {
     $route(to, from) {
       this.activeName = to.name;
+      this.isNotHeader = this.activeName === 'streamline' || this.activeName === 'streamlineEn';
     }
   },
   components: {}

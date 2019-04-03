@@ -47,6 +47,9 @@
   }
 
   .content {
+    height: calc(100% - 30px);
+    overflow: hidden;
+
     .c-lf {
       width: 252px;
 
@@ -172,8 +175,7 @@
     .c-ct {
       margin-left: 10px;
       width: calc(100% - 250px - 290px);
-      height: 758px;
-      overflow: hidden;
+      height: 100%;
       background: @main-bg-color;
 
       .tz {
@@ -196,7 +198,7 @@
 
       .bclx-list {
         .in-block;
-        margin-left: 128px;
+        padding-right: 5px;
         color: #fff;
         font-size: 12px;
 
@@ -204,16 +206,18 @@
           .in-block;
           padding-left: 15px;
 
-          &>select {
-            background: transparent;
-            border-color: #1268a3;
-            color: #1268a3;
-            width: 40px;
+          .lang-query{
+            .lang-query-input{
+              background: transparent;
+              border-color: #1268a3;
+              width: 50px;
+              height: 20px;
+            }
           }
         }
       }
 
-      .game-list-box{
+      .game-list-box {
         .clear-scroll;
         height: 98%;
       }
@@ -264,11 +268,21 @@
             .gq-detail {
               width: 700px;
 
+              .bshsf{
+                width: 50%;
+
+                &>span{
+                  flex: 1;
+                  .in-block;
+                  .tx-ct;
+                  line-height: 30px;
+                }
+              }
               &>div {
                 height: 50px;
                 padding: 10px;
 
-                &:first-child {
+                &:first-child{
                   border-bottom: 1px solid #295b8a;
                 }
 
@@ -300,13 +314,32 @@
                 }
               }
 
+              .two-going {
+                .absolute;
+                right: 28%;
+                top: 25px;
+                .in-block;
+                .tx-ct;
+                
+                .zs{
+                  padding: 8px 10px;
+                  border-radius: 5px;
+                  color: #fff;
+                  background: #2e689e;
+                  font-size: 12px;
+                  font-weight: bold;
+                  .tx-ct;
+                  .block;
+                  margin-bottom: 5px;
+                }
+              }
+
               .ct-going {
                 .absolute;
                 width: calc(100% - 90px);
                 height: 30px;
                 top: 35px;
 
-                .two-going,
                 .more {
                   border-radius: 5px;
                   color: #fff;
@@ -319,21 +352,13 @@
                   cursor: pointer;
                 }
 
-                .two-going {
-                  width: 100px;
-                  height: 28px;
-                  line-height: 28px;
-                  left: 325px;
-                  top: 0;
-                }
-
                 .pic-icon {
                   .absolute;
-                  left: 460px;
+                  right: 15%;
 
                   img {
                     background: rgba(15, 37, 58, .9);
-                    margin-right: 16px;
+                    margin-right: 20px;
                   }
                 }
 
@@ -348,47 +373,51 @@
             }
           }
 
-          .more-bet-box{
+          .more-bet-box {
             color: #fff;
             font-size: 14px;
 
-            &>dt{
+            &>dt {
               .flex;
-              background: #0e355c;
+              background: rgba(17, 60, 100, .8);
               cursor: pointer;
-              color: #c4ced7;
+              color: #97aabb;
               height: 40px;
               line-height: 40px;
               .tx-ct;
 
-              span{
+              span {
                 flex: 1;
               }
             }
-            dd{
-              .bs-result{
+
+            dd {
+              .bs-result {
                 background: rgba(4, 16, 28, .8);
-                li{
+
+                li {
                   .flex;
                   .tx-ct;
                   border-bottom: 1px solid #12304c;
                   height: 35px;
                   line-height: 35px;
 
-                  span{
+                  span {
                     flex: 1;
-                    &:first-child{
+
+                    &:first-child {
                       color: #5598dc;
+                      width: 180px;
+                      flex: none;
                     }
-                    &>b{
+
+                    &>b {
                       font-style: normal;
                       color: #5598dc;
                       padding-right: 5px;
                     }
                   }
                 }
-
-                
               }
             }
           }
@@ -460,7 +489,8 @@
       }
 
       .fund {
-        padding: 10px;
+        padding: 0 2px;
+        box-sizing: border-box;
         background: @main-bg-color;
 
 
@@ -503,7 +533,7 @@
         &>.list-flex {
           li {
             .relative;
-            line-height: 35px;
+            line-height: 40px;
 
             &:last-child::after {
               background: none;

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="'height:' + appHeight ">
     <HeaderBar v-show="routeParams == 'home'"></HeaderBar>
     <headerEn v-show="routeParams !== 'home'"></headerEn>
     <transition :name="transitionName" mode="out-in">
@@ -17,10 +17,12 @@ export default {
     return {
       transitionName: "slide-right",
       defaultLangu: 'homeEn',
+      appHeight: '600px',
       routeParams: localStorage.getItem('routeHeader') || this.defaultLangu
     };
   },
   created() {
+    this.appHeight = document.body.offsetHeight + 'px';
     this.$store.state.rightNavList = [
       { name: "投注列表", children: ["投注历史", "我的投注"], type: "tzlb" },
       { name: "聊天室", children: ["特級锦标赛(DATA2)", "特級锦标赛(DATA2)"], type: "lts" },

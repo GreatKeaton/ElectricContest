@@ -4,7 +4,7 @@
       <dl v-for="(item,index) in listDate" v-bind:key="index">
         <dt>{{item.time}}</dt>
         <dd>
-          <i :class="'grade'+item.grade" @click="isMsgbox=true;isUserLevel=true"></i>
+          <em :class="'grade'+item.grade" @click="isFollowBind(item, index)"><i :class="{'active': item.follow}"></i></em>
           <span class="user-name">{{item.username}}:</span>{{isUserLevel}}
           <span class="item-content">{{item.content}}</span>
         </dd>
@@ -120,7 +120,7 @@
           <span>Win rate：40%</span>
         </p>
         <p>Fan：120</p>
-        <a href="javascript:;" class="follow-btn" @click="isMsgbox=false;isUserLevel=false;">Follow</a>
+        <a href="javascript:;" class="follow-btn" @click="followBind">Follow</a>
       </div>
       <!-- 是否确认跟投 -->
       <div class="heel-throw" v-show="isHeelThrow">
@@ -213,6 +213,17 @@ export default {
     };
   },
   methods: {
+    isFollowBool: function(bool = false){
+      this.isMsgbox = bool;
+      this.isUserLevel = bool;
+    },
+    isFollowBind: function(data, index) {
+      this.isFollowBool(true);
+      this.listDate[index].follow = true;
+    },
+    followBind: function(){
+      this.isFollowBool();
+    },
     bsBind: function(item) {
       this.heelThrowData = item;
       this.isHeelThrow = true;
@@ -240,13 +251,13 @@ export default {
       }
       & > dd {
         line-height: 25px;
-        i {
-          height: 20px;
-          line-height: 20px;
+        em {
           font-size: 12px;
-          width: 60px;
           .in-block;
+          padding: 0 10px;
           border-radius: 6px;
+          .relative;
+          .cspn;
 
           &:before {
             content: "";
@@ -254,6 +265,16 @@ export default {
             .tx-ct;
             .block;
             font-style: normal;
+          }
+
+          &>i.active{
+            width: 10px;
+            height: 10px;
+            .in-block;
+            background: url('../../../images/home/right/love.png') no-repeat;
+            .absolute;
+            top: 7px;
+            left: -4px;
           }
         }
         .user-name {

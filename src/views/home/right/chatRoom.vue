@@ -4,7 +4,7 @@
       <dl v-for="(item,index) in listDate" v-bind:key="index">
         <dt>{{item.time}}</dt>
         <dd>
-          <i :class="'grade'+item.grade" @click="isMsgbox=true;isUserLevel=true"></i>
+          <em :class="'grade'+item.grade" @click="isFollowBind(item, index)"><i :class="{'active': item.follow}"></i></em>
           <span class="user-name">{{item.username}}:</span>
           <span class="item-content">{{item.content}}</span>
         </dd>
@@ -115,62 +115,52 @@
         <i class="el-icon-close right cspn" @click="isMsgbox=false;isUserLevel=false;"></i>
         <img src="../../../images/home/right/user-icon.jpg" alt>
         <p>
-          <span class="c-yellow">Emperor patrol</span>
+          <span class="c-yellow">皇帝巡街</span>
           <span class="lift">108</span>
         </p>
         <p class="level">
           <img src="../../../images/home/right/user-level.jpg" alt>
-          <span>Win rate：40%</span>
+          <span>胜率：40%</span>
         </p>
-        <p>Fan：120</p>
-        <a href="javascript:;" class="follow-btn" @click="isMsgbox=false;isUserLevel=false;">Follow</a>
+        <p>粉丝：120</p>
+        <a href="javascript:;" class="follow-btn" @click="followBind">关注</a>
       </div>
       <!-- 是否确认跟投 -->
       <div class="heel-throw" v-show="isHeelThrow">
         <div class="title">
-          <h1>Confirm with vote?？</h1>
-          <b>2019LCK Spring</b>
+          <h1>确认跟投吗？</h1>
+          <b>2019LCK 春季赛</b>
         </div>
         <ul>
-          <li>Player nickname：{{heelThrowData.username}}</li>
+          <li>玩家昵称：{{heelThrowData.username}}</li>
           <li>
-            Player achievement：
+            玩家成就：
             <i :class="'grade'+heelThrowData.grade"></i>
           </li>
-          <li>Player win rate：{{heelThrowData.username}}</li>
-          <li>Player event：{{heelThrowData.username}}</li>
+          <li>玩家胜率：{{heelThrowData.username}}</li>
+          <li>玩家赛事：{{heelThrowData.username}}</li>
           <li>
-            Player content：
+            玩家内容：
             <span class="item-content">{{heelThrowData.content}}</span>
           </li>
-          <li>Bet amount：{{heelThrowData.price || '999'}}</li>
-          <li>
-            Bet amount：
-            <span
-              v-show="!isPriceSet"
-              v-on:click.stop="isPriceSet = !isPriceSet"
-            >{{heelThrowData.priceBet || '999'}}</span>
-            <input
-              class="price-input"
-              type="text"
-              v-show="isPriceSet"
-              v-model="heelThrowData.priceBet"
-              v-on:click.stop
-            >
+          <li>投注金额：{{heelThrowData.price || '999'}}</li>
+          <li>投注金额：
+            <span v-show="!isPriceSet" v-on:click.stop="isPriceSet = !isPriceSet">{{heelThrowData.priceBet || '999'}}</span>
+            <input class="price-input" type="text" v-show="isPriceSet" v-model="heelThrowData.priceBet" v-on:click.stop="" >
           </li>
         </ul>
         <div class="group-btn">
-          <button>Confirmation?</button>
-          <button @click="isMsgbox=false;isHeelThrow=false;">cancel</button>
+          <button>确认跟投</button>
+          <button @click="isMsgbox=false;isHeelThrow=false;">取消</button>
         </div>
       </div>
       <!-- 是否确认晒单 -->
       <div class="msg-content" v-show="isNotesMsg">
-        <h1>Confirm the drying out</h1>
-        <p>Expert Winner of the competition 608</p>
+        <h1>确认晒出</h1>
+        <p>Expert 比赛获胜者608</p>
         <div class="btn-group">
-          <button>confirm</button>
-          <button @click="isNotesMsg=false;isMsgbox=false;">cancel</button>
+          <button>确认</button>
+          <button @click="isMsgbox=false;isNotesMsg=false;">取消</button>
         </div>
       </div>
     </div>
@@ -221,6 +211,17 @@ export default {
     };
   },
   methods: {
+    isFollowBool: function(bool = false){
+      this.isMsgbox = bool;
+      this.isUserLevel = bool;
+    },
+    isFollowBind: function(data, index) {
+      this.isFollowBool(true);
+      this.listDate[index].follow = true;
+    },
+    followBind: function(){
+      this.isFollowBool();
+    },
     bsBind: function(item) {
       this.heelThrowData = item;
       this.isHeelThrow = true;
@@ -249,13 +250,13 @@ export default {
       }
       & > dd {
         line-height: 25px;
-        i {
-          height: 20px;
-          line-height: 20px;
+        em {
           font-size: 12px;
-          width: 60px;
           .in-block;
+          padding: 0 10px;
           border-radius: 6px;
+          .relative;
+          .cspn;
 
           &:before {
             content: "";
@@ -264,12 +265,20 @@ export default {
             .block;
             font-style: normal;
           }
+
+          &>i.active{
+            width: 10px;
+            height: 10px;
+            .in-block;
+            background: url('../../../images/home/right/love.png') no-repeat;
+            .absolute;
+            top: 7px;
+            left: -4px;
+          }
         }
         .user-name {
           color: #c7a254;
           font-weight: bold;
-        }
-        .item-content {
         }
       }
     }

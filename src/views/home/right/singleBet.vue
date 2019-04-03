@@ -65,9 +65,9 @@
         <h1>
           GAL
           <i class="el-icon-close"></i>
+          <div class="confirmed">@1.81</div>
         </h1>
         <div>
-          <div class="confirmed">@1.81</div>
           <p>
             <img src="../../../images/home/right/i.png">比赛获胜者(总局)
             <span class="right">LOL</span>
@@ -159,16 +159,15 @@ export default {
     & > li {
       flex: 1;
       .tx-ct;
-      color: #1c4b77;
+      color: #1f4e7a;
       font-size: 14px;
       cursor: pointer;
       line-height: 30px;
+      background: rgba(23, 63, 100, .6);
 
       &.active {
-        color: #fff;
-        background: url("../../../images/home/nav/zh-active.png") no-repeat
-          bottom center;
-        background-size: 100%;
+        color: #64cce6;
+        background: rgba(30, 84, 131, .7);
       }
     }
   }
@@ -181,12 +180,31 @@ export default {
       padding: 0 5px;
       background: #1c4b77;
       margin-top: 1px;
+      .relative;
 
       i {
         float: right;
         margin-top: 4px;
       }
     }
+    .confirmed {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        height: 20px;
+        margin-left: -25px;
+        color: #fff;
+        font-size: 12px;
+        background: #01111e;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        .tx-ct;
+        width: 68px;
+        height: 20px;
+        line-height: 20px;
+        font-weight: bold;
+        margin-left: -34px;
+      }
     & > div {
       font-size: 14px;
       padding: 10px 5px;
@@ -228,25 +246,6 @@ export default {
     }
   }
   .string-content {
-    .lement-box {
-      .relative;
-
-      .confirmed {
-        position: absolute;
-        top: 5px;
-        left: 50%;
-        height: 20px;
-        margin-left: -25px;
-        color: #fff;
-        font-size: 12px;
-        background: #01111e;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        .tx-ct;
-        padding: 3px 10px;
-        font-weight: bold;
-      }
-    }
     .more-bet-type {
       & > h1 {
         line-height: 25px;

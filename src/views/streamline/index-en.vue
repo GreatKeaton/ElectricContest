@@ -135,35 +135,37 @@
       </div>
 
       <div class="c-ct">
-        <div class="tz">
-          <span>
-            speed bet
-            <img src="../../images/home/nav/tz.png" alt>
-          </span>
-          <span>
-            leverage : default
-            <img src="../../images/home/nav/xl.png" alt>
-          </span>
-          <span>
-            select league : all
-            <img src="../../images/home/nav/xl.png" alt>
-          </span>
-          <span>
-            odds: HongKong
-            <img src="../../images/home/nav/xl.png" alt>
-          </span>
+        <div class="clearfix">
+          <div class="tz">
+            <span>
+              speed bet
+              <img src="../../images/home/nav/tz.png" alt>
+            </span>
+            <span>
+              leverage : default
+              <img src="../../images/home/nav/xl.png" alt>
+            </span>
+            <span>
+              select league : all
+              <img src="../../images/home/nav/xl.png" alt>
+            </span>
+            <span>
+              odds: HongKong
+              <img src="../../images/home/nav/xl.png" alt>
+            </span>
+          </div>
+          <ul class="bclx-list right">
+            <li>Matches</li>
+            <li>Betting rules</li>
+            <li>setting</li>
+            <li>history record</li>
+            <li>
+              <select>
+                <option value></option>
+              </select>
+            </li>
+          </ul>
         </div>
-        <ul class="bclx-list">
-          <li>Matches</li>
-          <li>Betting rules</li>
-          <li>setting</li>
-          <li>history record</li>
-          <li>
-            <select>
-              <option value></option>
-            </select>
-          </li>
-        </ul>
 
         <div class="game-list-box">
           <div class="game-info">
@@ -176,18 +178,21 @@
                 </div>
                 <div class="gq-detail">
                   <div>
-                    <img src="../../images/home/nav/ir.png" alt>
-                    <span class="c-blue">RNG</span>
-                    <span>winner</span>
-                    <span class="c-yellow">1.266</span>
+                     <div class="bshsf flex">
+                      <img src="../../images/home/nav/ir.png" alt>
+                      <span class="c-blue">RNG</span>
+                      <span>winner</span>
+                      <span class="c-yellow">1.266</span>
+                     </div>
+                  </div>
+                  <div class="two-going">
+                    <span class="zs">second match in progress</span>
+                    <span>B03</span>
                   </div>
                   <p class="ct-going">
-                    <span class="two-going">second match in progress</span>
                     <span class="pic-icon">
-                      <img src="../../images/home/nav/home.png" alt>
-                      <img src="../../images/home/nav/home.png" alt>
+                      <img src="../../images/home/nav/video-icon.png" alt>
                       <img src="../../images/home/nav/qs.png" alt>
-                      <img src="../../images/home/nav/5666.png" alt>
                     </span>
                     <span
                       class="more"
@@ -195,11 +200,12 @@
                     >more</span>
                   </p>
                   <div>
-                    <img src="../../images/home/nav/we.png" alt>
-                    <span class="c-blue">RNG</span>
-                    <span>winner</span>
-                    <span class="c-yellow">1.266</span>
-                    <span>B03</span>
+                    <div class="bshsf flex">
+                      <img src="../../images/home/nav/we.png" alt>
+                      <span class="c-blue">RNG</span>
+                      <span>winner</span>
+                      <span class="c-yellow">1.266</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -325,18 +331,15 @@ export default {
     line-height: 50px;
   }
 }
-.two-going {
-  width: 150px !important;
-}
 .pic-icon {
-  left: 490px !important;
   img {
     margin-right: 10px !important;
   }
 }
 .game-list-box {
-  margin-top: 15px !important;
-  height: 720px !important;
+  .bshsf{
+    width: 40% !important;
+  }
 }
 </style>
 <style lang="less">

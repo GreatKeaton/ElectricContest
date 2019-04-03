@@ -6,14 +6,14 @@
     </ul>
 
     <div class="single-content" v-show="listIndex === 1">
-      <article class="lement-box" v-for="(item, index) in [0, 1]" v-bind:key="index">
+      <article class="lement-box" v-for="(item, index) in listData" v-bind:key="index">
         <h1>
           GAL
-          <i class="el-icon-close"></i>
+          <i class="el-icon-close cspn"></i>
         </h1>
         <div>
           <p>
-            <img src="../../../images/home/right/i.png">比赛获胜者(总局)First Blood Team（Match 1)
+            <img src="../../../images/home/right/i.png">First Blood Team（Match 1)
             <span class="right">LOL</span>
           </p>
           <p>
@@ -21,8 +21,10 @@
             <b>VS</b>
             <b>GS</b>
           </p>
-          <p>TCL- Turkish Champion League - 
-          2019 Winter Match</p>
+          <p>
+            TCL- Turkish Champion League -
+            2019 Winter Match
+          </p>
           <div class="bsjg-box">
             <span>Bet Amount</span>
             <span class="dx">@6.80</span>
@@ -63,12 +65,12 @@
 
     <div class="string-content" v-show="listIndex === 2">
       <article class="lement-box" v-for="(item, index) in new Array(2)" v-bind:key="index">
-        <h1>
+        <h1 class="relative">
           GAL
           <i class="el-icon-close"></i>
+          <div class="confirmed">@1.81</div>
         </h1>
         <div>
-          <div class="confirmed">@1.81</div>
           <p>
             <i></i>First Blood Team（Match 1)
             <span class="right">LOL</span>
@@ -78,8 +80,10 @@
             <b>VS</b>
             <b>GS</b>
           </p>
-          <p>TCL- Turkish Champion League - 
-          2019 Winter Match</p>
+          <p>
+            TCL- Turkish Champion League -
+            2019 Winter Match
+          </p>
         </div>
       </article>
 
@@ -139,7 +143,8 @@ export default {
     return {
       listIndex: 1,
       priceIndex: 2,
-      isMore: true
+      isMore: true,
+      listData: new Array(2)
     };
   }
 };
@@ -161,16 +166,15 @@ export default {
     & > li {
       flex: 1;
       .tx-ct;
-      color: #1c4b77;
+      color: #1f4e7a;
       font-size: 14px;
       cursor: pointer;
       line-height: 30px;
+      background: rgba(23, 63, 100, 0.6);
 
       &.active {
-        color: #fff;
-        background: url("../../../images/home/nav/zh-active.png") no-repeat
-          bottom center;
-        background-size: 100%;
+        color: #64cce6;
+        background: rgba(30, 84, 131, 0.7);
       }
     }
   }
@@ -196,7 +200,7 @@ export default {
       p {
         margin-bottom: 10px;
       }
-      img{
+      img {
         margin-right: 5px;
         vertical-align: -2px;
       }
@@ -231,11 +235,9 @@ export default {
   }
   .string-content {
     .lement-box {
-      .relative;
-
       .confirmed {
         position: absolute;
-        top: -20px;
+        bottom: 0;
         left: 50%;
         height: 20px;
         margin-left: -25px;
@@ -245,8 +247,11 @@ export default {
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         .tx-ct;
-        padding: 3px 10px;
+        width: 68px;
+        height: 20px;
+        line-height: 20px;
         font-weight: bold;
+        margin-left: -34px;
       }
     }
     .more-bet-type {

@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation">
+  <div class="navigation streamline">
     <div class="top-title">
       <div class="search-inp">
         RMB: 19000
@@ -99,35 +99,44 @@
       </div>
 
       <div class="c-ct">
-        <div class="tz">
-          <span>
-            快速投注
-            <img src="../../images/home/nav/tz.png" alt>
-          </span>
-          <span>
-            水位：默认
-            <img src="../../images/home/nav/xl.png" alt>
-          </span>
-          <span>
-            选择联赛：全部
-            <img src="../../images/home/nav/xl.png" alt>
-          </span>
-          <span>
-            赔率：香港盘
-            <img src="../../images/home/nav/xl.png" alt>
-          </span>
+        <div class="clearfix">
+          <div class="tz">
+            <span>
+              快速投注
+              <img src="../../images/home/nav/tz.png" alt>
+            </span>
+            <span>
+              水位：默认
+              <img src="../../images/home/nav/xl.png" alt>
+            </span>
+            <span>
+              选择联赛：全部
+              <img src="../../images/home/nav/xl.png" alt>
+            </span>
+            <span>
+              赔率：香港盘
+              <img src="../../images/home/nav/xl.png" alt>
+            </span>
+          </div>
+          <ul class="bclx-list right">
+            <li>赛果</li>
+            <li>玩法规则</li>
+            <li>功能设定</li>
+            <li>投注记录</li>
+            <li>
+              <div class="lang-query">
+                <div class="lang-query-input" @click="isQueryLang = true">
+                  <img src="../../images/home/right/zn.png" alt="" v-show="lang === 'zn'">
+                  <img src="../../images/home/right/en.png" alt="" v-show="lang === 'en'">
+                </div>
+                <ul v-show="isQueryLang">
+                  <li><img src="../../images/home/right/zn.png" alt=""></li>
+                  <li><img src="../../images/home/right/en.png" alt=""></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
         </div>
-        <ul class="bclx-list">
-          <li>赛果</li>
-          <li>玩法规则</li>
-          <li>功能设定</li>
-          <li>投注记录</li>
-          <li>
-            <select>
-              <option value></option>
-            </select>
-          </li>
-        </ul>
 
         <div class="game-list-box">
           <div class="game-info">
@@ -140,27 +149,32 @@
                 </div>
                 <div class="gq-detail">
                   <div>
-                    <img src="../../images/home/nav/ir.png" alt>
-                    <span class="c-blue">RNG</span>
-                    <span>比赛获胜方</span>
-                    <span class="c-yellow">1.266</span>
+                    <div class="bshsf flex">
+                      <img src="../../images/home/nav/ir.png" alt>
+                      <span class="c-blue">RNG</span>
+                      <span style="width: 100px;">比赛获胜方</span>
+                      <span class="c-yellow">1.266</span>
+                    </div>
+                  </div>
+                  <div class="two-going">
+                    <span class="zs">第二局进行中</span>
+                    <span>赛制：三局两胜</span>
                   </div>
                   <p class="ct-going">
-                    <span class="two-going">第二局进行中</span>
                     <span class="pic-icon">
-                      <img src="../../images/home/nav/home.png" alt>
-                      <img src="../../images/home/nav/home.png" alt>
+                      <img src="../../images/home/nav/video-icon.png" alt>
                       <img src="../../images/home/nav/qs.png" alt>
-                      <img src="../../images/home/nav/5666.png" alt>
                     </span>
                     <span class="more" @click="moreBetInd = (moreBetInd === index) ? false : index">更多投注</span>
                   </p>
                   <div>
-                    <img src="../../images/home/nav/we.png" alt>
-                    <span class="c-blue">RNG</span>
-                    <span>比赛获胜方</span>
-                    <span class="c-yellow">1.266</span>
-                    <span>赛制：三局两胜</span>
+                    <div class="bshsf flex">
+                      <img src="../../images/home/nav/we.png" alt>
+                      <span class="c-blue">RNG</span>
+                      <span>比赛获胜方</span>
+                      <span class="c-yellow">1.266</span>
+                      <!-- <span>赛制：三局两胜</span> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -220,6 +234,8 @@ export default {
       newPanelHide: true,
       zdyPanelHide: true,
       moreBetInd: 1,
+      lang: 'zn',
+      isQueryLang: false,
       lists: [
         "由于万博体育延时结算，如果无法签到(2019年1月11日之前无法签到的会员)，请联系客服进行补签。"
       ]
