@@ -160,9 +160,16 @@
             <li>setting</li>
             <li>history record</li>
             <li>
-              <select>
-                <option value></option>
-              </select>
+              <div class="lang-query">
+                <div class="lang-query-input" @click="isQueryLang = !isQueryLang">
+                  <img src="../../images/home/right/en.png" alt="">
+                  <i class="el-icon-caret-bottom"></i>
+                </div>
+                <ul v-show="isQueryLang" @click="isQueryLang = false">
+                  <router-link to="/streamline"><li><img src="../../images/home/right/zn.png" alt=""></li></router-link>
+                  <router-link to="/streamlineEn"><li><img src="../../images/home/right/en.png" alt=""></li></router-link>
+                </ul>
+              </div>
             </li>
           </ul>
         </div>
@@ -191,8 +198,8 @@
                   </div>
                   <p class="ct-going">
                     <span class="pic-icon">
-                      <img src="../../images/home/nav/video-icon.png" alt>
-                      <img src="../../images/home/nav/qs.png" alt>
+                      <router-link to="/studioEn"><img src="../../images/home/nav/video-icon.png" alt></router-link>
+                      <router-link to="/studio"><img src="../../images/home/nav/qs.png" alt></router-link>
                     </span>
                     <span
                       class="more"
@@ -270,6 +277,7 @@ export default {
       zdyPanelHide: true,
       moreBetInd: 1,
       isDzym: false,
+      isQueryLang: false,
       lists: [
         "Due to the delay settlement of Wanbo Sports, if you are unable to sign in (members who cannot sign in before January 11, 2019), please contact customer service for a replacement."
       ],

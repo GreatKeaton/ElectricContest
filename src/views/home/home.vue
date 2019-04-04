@@ -1,7 +1,6 @@
 <template>
   <div id="home">
     <Navigation></Navigation>
-
   </div>
 </template>
 
@@ -17,7 +16,6 @@ export default {
 
   },
   methods: {
-
   },
   components: {
     Navigation
@@ -29,6 +27,8 @@ export default {
 #home {
     width: 1360px;
     margin: 0 auto;
+    height: 100%;
+    overflow: hidden;
 }
 
 </style>

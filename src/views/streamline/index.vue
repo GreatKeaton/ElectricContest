@@ -125,13 +125,13 @@
             <li>投注记录</li>
             <li>
               <div class="lang-query">
-                <div class="lang-query-input" @click="isQueryLang = true">
-                  <img src="../../images/home/right/zn.png" alt="" v-show="lang === 'zn'">
-                  <img src="../../images/home/right/en.png" alt="" v-show="lang === 'en'">
+                <div class="lang-query-input" @click="isQueryLang = !isQueryLang">
+                  <img src="../../images/home/right/zn.png" alt="">
+                  <i class="el-icon-caret-bottom"></i>
                 </div>
-                <ul v-show="isQueryLang">
-                  <li><img src="../../images/home/right/zn.png" alt=""></li>
-                  <li><img src="../../images/home/right/en.png" alt=""></li>
+                <ul v-show="isQueryLang" @click="isQueryLang = false">
+                  <router-link to="/streamline"><li @click="lang = 'zn'"><img src="../../images/home/right/zn.png" alt=""></li></router-link>
+                  <router-link to="/streamlineEn"><li @click="lang = 'en'"><img src="../../images/home/right/en.png" alt=""></li></router-link>
                 </ul>
               </div>
             </li>
@@ -162,8 +162,8 @@
                   </div>
                   <p class="ct-going">
                     <span class="pic-icon">
-                      <img src="../../images/home/nav/video-icon.png" alt>
-                      <img src="../../images/home/nav/qs.png" alt>
+                      <router-link to="/studio"><img src="../../images/home/nav/video-icon.png" alt></router-link>
+                      <router-link to="/studio"><img src="../../images/home/nav/qs.png" alt></router-link>
                     </span>
                     <span class="more" @click="moreBetInd = (moreBetInd === index) ? false : index">更多投注</span>
                   </p>
@@ -234,7 +234,6 @@ export default {
       newPanelHide: true,
       zdyPanelHide: true,
       moreBetInd: 1,
-      lang: 'zn',
       isQueryLang: false,
       lists: [
         "由于万博体育延时结算，如果无法签到(2019年1月11日之前无法签到的会员)，请联系客服进行补签。"

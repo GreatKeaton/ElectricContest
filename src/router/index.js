@@ -10,7 +10,8 @@ const homeEn = r =>
 //首页精简版
 const streamlineEn = r =>
   require.ensure([], () => r(require("../views/streamline/index-en.vue")), "streamline");
-
+const studioEn = r =>
+  require.ensure([], () => r(require("../views/streamline/studio-en.vue")), "studio"); 
 //竞猜活动
 const quizEn = r =>
   require.ensure([], () => r(require("../views/quiz/quiz-en.vue")), "quiz");
@@ -41,6 +42,8 @@ const videosEn = r =>
 //首页精简版
 const streamline = r =>
   require.ensure([], () => r(require("../views/streamline/index.vue")), "streamline");
+const studio = r =>
+  require.ensure([], () => r(require("../views/streamline/studio.vue")), "studio"); 
 const quiz = r =>
   require.ensure([], () => r(require("../views/quiz/quiz.vue")), "quiz"); 
 //数据中心
@@ -94,6 +97,16 @@ export const RouterMap = [
     path: '/streamlineEn',
     name: 'streamlineEn',
     component: streamlineEn,
+  },
+  {
+    path: '/studio',
+    name: 'studio',
+    component: studio,
+  },
+  {
+    path: '/studioEn',
+    name: 'studioEn',
+    component: studioEn,
   },
   {
     path: '/datacenter',

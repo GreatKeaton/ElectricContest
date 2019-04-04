@@ -1,0 +1,595 @@
+.c-red {
+  color: #c31313;
+}
+
+.c-blue {
+  color: #1351c3;
+}
+.c-tblue{
+    color: #5fc4e2;
+}
+
+.studio {
+  .contain-body;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20px;
+
+  &>header {
+    margin-bottom: 8px;
+    height: 60px;
+
+    img {
+      margin-left: 5%;
+      display: block;
+      padding-top: 10px;
+    }
+  }
+
+  &>div {
+    height: 100%;
+    .in-block;
+    .left;
+  }
+
+  .left-box {
+    width: 67%;
+    height: calc(100% - 68px);
+    margin-left: 2%;
+    margin-right: 1%;
+    color: #fff;
+
+    .title {
+      background: rgba(17, 51, 87, .8);
+      height: 80px;
+      vertical-align: middle;
+      border-bottom: 2px solid #0d2335;
+
+      .canel-icon {
+        margin: 16px;
+        .in-block;
+      }
+
+      .bet-info {
+        .absolute;
+        top: 15px;
+        line-height: 25px;
+      }
+
+      .bs-team {
+        .absolute;
+        left: 50%;
+        top: 0;
+        margin-left: -300px;
+      }
+    }
+
+    .left-content {
+      height: calc(100% - 80px - 65px);
+
+      .cont-title {
+        .flex;
+        .cspn;
+        background: rgba(18, 61, 102, .8);
+
+        li {
+          flex: 1;
+          line-height: 65px;
+          .tx-ct;
+
+          &::before {
+            content: '';
+            width: 40px;
+            height: 40px;
+            background: url('../../images/streamline/pm.png') no-repeat center center;
+            vertical-align: middle;
+            margin-right: 10px;
+            .in-block;
+          }
+
+          &:nth-child(1) {
+            &::before {
+              background-position: 0 -40px;
+            }
+          }
+
+          &.active:nth-child(1) {
+            &::before {
+              background-position: 0 0;
+            }
+          }
+
+          &:nth-child(2) {
+            &::before {
+              background-position: -40px -40px;
+            }
+          }
+
+          &.active:nth-child(2) {
+            &::before {
+              background-position: -40px 0;
+            }
+          }
+
+          &:nth-child(3) {
+            &::before {
+              background-position: -80px -40px;
+            }
+          }
+
+          &.active:nth-child(3) {
+            &::before {
+              background-position: -80px 0;
+            }
+          }
+
+          &:nth-child(4) {
+            &::before {
+              background-position: -120px -40px;
+            }
+          }
+
+          &.active:nth-child(4) {
+            &::before {
+              background-position: -120px 0;
+            }
+          }
+        }
+      }
+
+      .cont-data {
+        background: rgba(5, 19, 31, .7);
+        .clear-scroll;
+
+        ul {
+          height: 100%;
+
+          li {
+            .flex;
+            line-height: 40px;
+
+            span {
+              flex: 1;
+              border-bottom: 1px solid #12304d;
+              border-right: 1px solid #12304d;
+              padding-left: 10px;
+              color: #59a0e3;
+
+              em {
+                color: #fff;
+              }
+
+              &:last-child {
+                border-right: 0;
+              }
+            }
+
+            &:last-child {
+              span {
+                border-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .right-box {
+    width: 28%;
+
+    .bet-type {
+      background: rgba(20, 54, 87, .7);
+      .flex;
+
+      li {
+        color: #9ca7b6;
+        line-height: 50px;
+        flex: 1;
+        .tx-ct;
+        .cspn;
+
+        &.active-left {
+          background: url('../../images/streamline/bet-left.png') no-repeat;
+        }
+
+        &.active-right {
+          background: url('../../images/streamline/bet-right.png') no-repeat;
+        }
+      }
+    }
+
+    .video-pic {
+      width: 100%;
+    }
+
+    .right-content {
+      color: #3b71a4;
+      .flex;
+      .cspn;
+
+      li {
+        flex: 1;
+        line-height: 50px;
+        background: rgba(4, 21, 39, .7);
+        .tx-ct;
+
+        &.active {
+          color: #fff;
+          background: url('../../images/streamline/query-model.png') no-repeat center center;
+        }
+      }
+    }
+
+    .cont-data {
+      height: 440px;
+
+      // 选手数据
+      .player-data {
+        background: rgba(16, 58, 98, .65);
+        padding: 20px;
+        color: #9bc5eb;
+        .clear-scroll;
+        .tx-ct;
+
+        .progress {
+          margin-top: 10px;
+          text-align: left;
+          font-size: 14px;
+        }
+
+        .detail-data {
+          .flex;
+          margin-top: 20px;
+
+          .row {
+            flex: 1;
+            .relative;
+
+            &::after {
+              content: "";
+              width: 3px;
+              height: 100%;
+              background: url("../../images/home/right/line.png") no-repeat center center;
+              .absolute;
+              top: 0;
+              right: 0;
+            }
+
+            &:last-child {
+              &::after {
+                background: none;
+              }
+            }
+
+            b,
+            p,
+            span {
+              .block;
+              .tx-ct;
+            }
+
+            b {
+              color: #fff;
+              font-weight: bold;
+              font-size: 16px;
+            }
+
+            p {
+              color: #21547f;
+              margin-top: -3px;
+              font-size: 12px;
+            }
+
+            &>div {
+              margin-bottom: 5px;
+
+              &:first-child {
+                p {
+                  height: auto;
+
+                }
+              }
+            }
+
+            span {
+              color: #90cef5;
+              font-size: 14px;
+              margin-bottom: 15px;
+            }
+          }
+        }
+      }
+
+      // 数据对比
+      .comparison-data {
+        background: rgba(11, 60, 102, .4);
+        .clear-scroll;
+
+        article {
+          h1 {
+            background: rgba(22, 83, 142, .5);
+            line-height: 40px;
+            color: #aacbe8;
+            font-weight: normal;
+            font-size: 20px;
+            .tx-ct;
+          }
+
+          &>div {
+            padding: 10px;
+            .relative;
+          }
+
+          div {
+            .title {
+              .tx-ct;
+              .absolute;
+              top: 15px;
+              left: 25%;
+              width: 50%;
+              font-size: 14px;
+
+              p {
+                color: #fff;
+              }
+
+              span {
+                color: #335270;
+                font-size: 12px;
+              }
+            }
+
+            .vs-team {
+              width: 70%;
+              margin: 20px auto;
+              .flex;
+              justify-content: center;
+              align-items: center;
+
+              &>* {
+                flex: 1;
+                .tx-ct;
+              }
+
+              &>span {
+                font-size: 22px;
+                font-weight: bold;
+                color: #fff;
+                vertical-align: middle;
+
+              }
+
+              &>div {
+                .tx-ct;
+
+                img {
+                  .block;
+                  width: 100px;
+                  flex: none;
+                  margin: 0 auto;
+                  margin-bottom: 10px;
+                }
+
+                em {
+                  color: #68a3de;
+                }
+              }
+            }
+
+            .match-situation {
+              color: #aacbe8;
+              font-size: 14px;
+              padding: 0 10px;
+              .tx-ct;
+
+              &>span {
+                width: 8%;
+                .in-block;
+              }
+
+              .prograss-info {
+                .in-block;
+                width: 80%;
+                margin-bottom: 15px;
+
+                p {
+                  padding-bottom: 6px;
+
+                  span {
+                    &:first-child {
+                      .c-red;
+                    }
+
+                    &:last-child {
+                      color: #3a6ecf;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .season-performance {
+          .title {
+            .absolute;
+            top: 35px;
+          }
+
+          .vs-team {
+            width: 100%;
+            margin-top: 0;
+            .flex;
+
+            &>div {
+              flex: 1;
+
+              &>span {
+                color: #aacbe8;
+                font-size: 12px;
+                margin-top: 10px;
+                .block;
+              }
+
+              &:first-child {
+                b {
+                  .c-red;
+                  font-size: 16px;
+                }
+              }
+
+              &:last-child {
+                b {
+                  .c-blue;
+                  font-size: 16px;
+                }
+              }
+            }
+
+            img {
+              width: 70px;
+              margin-bottom: 0;
+            }
+
+            &>span {
+              .absolute;
+              top: 102px;
+            }
+          }
+
+          .match-situation {
+            &>span {
+              .tx-rt;
+
+              &:first-child {
+                .c-red;
+              }
+
+              &:last-child {
+                .c-blue;
+              }
+            }
+
+            .prograss-info {
+              p {
+                color: #fff;
+                padding-bottom: 3px;
+              }
+            }
+          }
+        }
+
+        // 交战记录
+        .combat-record {
+          .flex;
+          padding: 20px;
+          color: #ffffff;
+          .tx-ct;
+
+          .row {
+            height: 100px;
+            .relative;
+            flex: 1;
+
+            &::after {
+              content: "";
+              width: 3px;
+              height: 100%;
+              background: url("../../images/home/right/line.png") no-repeat center center;
+              background-position: 100% 100%;
+              .absolute;
+              top: 0;
+              right: 0;
+            }
+
+            &>span {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+      // 联赛积分
+      .league-points {
+        height: calc(100% - 40px);
+
+        .data-title {
+          .flex;
+          background: rgba(40, 106, 168, .65);
+          color: #fff;
+          .tx-ct;
+
+          li {
+            flex: 1;
+            line-height: 40px;
+
+            &:nth-child(2) {
+              width: 50%;
+              flex: none;
+              text-align: left;
+              padding-left: 15px;
+              color: #fff;
+            }
+          }
+        }
+
+        .data-scroll {
+          .cont-data {
+            li {
+              .flex;
+              font-size: 14px;
+              line-height: 50px;
+              background: rgba(0, 2, 4, .55);
+
+              span {
+                flex: 1;
+                .tx-ct;
+
+                &:nth-child(1) {
+                  em {
+                    color: #5fc4e2;
+                    width: 28px;
+                    height: 30px;
+                    line-height: 30px;
+                    border-radius: 50%;
+                    border: 1px solid #5fc4e2;
+                    .in-block;
+                  }
+                }
+
+                &:nth-child(2) {
+                  width: 50%;
+                  flex: none;
+                  text-align: left;
+                  padding-left: 15px;
+                  color: #fff;
+                }
+
+                &:nth-child(3) {
+                  color: #ff0000;
+                }
+
+                &:nth-child(4) {
+                  color: #c6ff00;
+                }
+
+                &:nth-child(5) {
+                  color: #24ff00;
+                }
+
+                &:nth-child(6) {
+                  color: #0078ff;
+                }
+              }
+
+              &:nth-child(odd) {
+                background: rgba(11, 60, 102, .4);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

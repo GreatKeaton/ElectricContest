@@ -79,8 +79,8 @@
                 <dl>
                   <dt>Function selection bar</dt>
                   <dd>
-                    <span v-for="(item, index) in functionList" v-bind:key="index">
-                      {{item}}
+                    <span v-for="(item, index) in functionList" :key="index">
+                      {{item.name}}
                       <i class="el-icon-error" @click="functionbind(item, index)"></i>
                     </span>
                   </dd>
@@ -88,14 +88,14 @@
                 <dl>
                   <dt>More categories</dt>
                   <dd>
-                    <span v-for="(item, index) in moreClassifyLabelList" v-bind:key="index">
-                      {{item}}
+                    <span v-for="(item, index) in moreClassifyLabelList" :key="index">
+                      {{item.name}}
                       <i class="el-icon-circle-plus" @click="moreClassify(item, index)"></i>
                     </span>
                   </dd>
                 </dl>
                 <div class="btn-group">
-                  <button class="active">Done</button>
+                  <button @click="doneAdd" class="active">Done</button>
                   <button>Canel</button>
                 </div>
               </dd>
@@ -615,7 +615,6 @@ export default {
     },
     rightListNav: function(type) {
       this.rightBetListType = type;
-      // if (type === "tzlb") this.betList2 = !this.betList2;
     },
     rechargeBind: function(ind) {
       this.operateIndex = ind;

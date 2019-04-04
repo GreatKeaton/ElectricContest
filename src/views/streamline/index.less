@@ -2,6 +2,7 @@
 
 .navigation {
   .contain-body;
+  height: calc(100% - 68px);
   .relative;
 
   .top-title {
@@ -207,11 +208,39 @@
           padding-left: 15px;
 
           .lang-query{
+            .relative;
+            width: 40px;
+
             .lang-query-input{
               background: transparent;
-              border-color: #1268a3;
-              width: 50px;
+              border: 1px solid #24526e;
               height: 20px;
+              padding: 3px 5px;
+              cursor: pointer;
+
+              .el-icon-caret-bottom{
+                color: #24526e;
+                .right;
+              }
+            }
+            &>ul{
+              width: 100%;
+              .absolute;
+              z-index: 99;
+              cursor: pointer;
+              li{
+                height: 20px;
+                border: 1px solid #24526e;
+                width: 100%;
+                border-top: 0;
+                padding-left: 5px;
+                img{
+                  padding-top: 4px;
+                }
+                &:hover{
+                  border: 1px solid #2e689e;
+                }
+              }
             }
           }
         }

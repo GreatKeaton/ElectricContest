@@ -19,10 +19,10 @@
             @click="routerTo('homeEn', 'homeEn')"
           >
         </div>
-        <div class="setting">
+        <div class="setting" v-show="isNotHeader">
           <div class="setItem pointer" @click="funcSetDialogVisible = true">Preferences</div>
           <div class="setItem pointer" @click="betRecordDialogVisible = true">betting record</div>
-          <select
+          <!-- <select
             name
             id
             class="langu-change"
@@ -31,10 +31,21 @@
           >
             <option value="home">中文</option>
             <option value="homeEn">英文</option>
-          </select>
+          </select> -->
+          <div class="lang-query">
+            <div class="lang-query-input" @click="isQueryLang = !isQueryLang">
+              <img src="../images/home/right/zn.png" alt="" v-show="lang === 'home'">
+              <img src="../images/home/right/en.png" alt="" v-show="lang === 'homeEn'">
+              <i class="el-icon-caret-bottom"></i>
+            </div>
+            <ul v-show="isQueryLang" @click="isQueryLang = false">
+              <li @click="routerTo('home', 'home');lang = 'home'"><img src="../images/home/right/zn.png" alt=""></li>
+              <li @click="routerTo('homeEn', 'homeEn');lang = 'homeEn'"><img src="../images/home/right/en.png" alt=""></li>
+            </ul>
+          </div>
         </div>
       </div>
-      <ul class="navItemBox cspn">
+      <ul class="navItemBox cspn" v-show="isNotHeader">
         <li
           v-for="(item,index) in list"
           v-bind:key="index"
@@ -443,7 +454,10 @@ export default {
       bettingSetList: ["Bet record", "Activity record", "Point query"],
       betSetIndex: 0,
       routhPath: this.$route.name,
-      language: this.$route.params.order || "homeEn",
+      isQueryLang: false,
+      lang: this.$route.params.order || "homeEn",
+      routeParams: localStorage.getItem('routeHeader'),
+      isNotHeader: (this.routhPath === 'streamline' || this.routhPath === 'streamlineEn') || true,
       list: [
         {
           value: "Matches",
@@ -502,15 +516,23 @@ export default {
           order: index
         }
       });
-      if (index === "home" || index === "homeEn"){
-        localStorage.setItem('routeHeader', index);
-         this.language = false;
+      if (name === "home" || name === "homeEn"){
+        localStorage.setItem('routeHeader', name);
+        this.lang = name;
+      }else if(name === 'streamline' || name === 'streamlineEn'){
+        localStorage.setItem('routeHeader', name);
       }
     }
+  },
+  created(){
+    console.log(this.routeParams);
   },
   watch: {
     $route(to, from) {
       this.activeName = to.name;
+      if (to.name === "home" || to.name === "homeEn"){
+        this.lang = to.name;
+      }
     }
   },
   components: {}
@@ -538,24 +560,43 @@ export default {
 
         .setItem {
           margin-right: 20px;
+          display: inline-block;
         }
 
-        .langu-change {
-          border-color: gray;
-          background: transparent;
-          color: #fff;
-          cursor: pointer;
-          outline: none;
+        .lang-query{
+          position: relative;
+          width: 40px;
 
-          option {
-            -moz-appearance: none;
-            -webkit-appearance: none;
-            appearance: none;
-            background-color: rgba(3, 14, 8, 0.8);
+          .lang-query-input{
+            background: transparent;
+            border: 1px solid #24526e;
+            height: 20px;
+            padding: 2px 5px;
+            cursor: pointer;
+
+            .el-icon-caret-bottom{
+              color: #24526e;
+              float: right;
+            }
           }
-
-          option:hover {
-            background-color: #1E90FF;
+          &>ul{
+            width: 100%;
+            position: absolute;
+            z-index: 99;
+            cursor: pointer;
+            li{
+              height: 20px;
+              border: 1px solid #24526e;
+              width: 100%;
+              border-top: 0;
+              padding-left: 5px;
+              img{
+                padding-top: 4px;
+              }
+              &:hover{
+                border: 1px solid #2e689e;
+              }
+            }
           }
         }
       }
