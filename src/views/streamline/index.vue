@@ -1,5 +1,8 @@
 <template>
   <div class="navigation streamline">
+    <header>
+      <img src="../../images/header/logo.png" alt>
+    </header>
     <div class="top-title">
       <div class="search-inp">
         RMB: 19000
@@ -11,7 +14,7 @@
       </div>
     </div>
 
-    <div class="content flex">
+    <div class="content flex relative">
       <div class="c-lf">
         <ul class="main-list">
           <li class="gq" :class="{'active': listIndex === 1}" v-on:click.stop="listBind(1)">

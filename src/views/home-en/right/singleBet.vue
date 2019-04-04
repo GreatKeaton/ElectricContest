@@ -26,9 +26,9 @@
             2019 Winter Match
           </p>
           <div class="bsjg-box">
-            <span>Bet Amount</span>
+            <span>Betting</span>
             <span class="dx">@6.80</span>
-            <span>Win Amount</span>
+            <span>Win</span>
           </div>
           <p class="betting-limit">
             Min Bet:

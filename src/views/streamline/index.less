@@ -2,8 +2,19 @@
 
 .navigation {
   .contain-body;
-  height: calc(100% - 68px);
+  height: 100%;
   .relative;
+
+  &>header {
+    margin-bottom: 8px;
+    height: 60px;
+
+    img {
+      margin-left: 5%;
+      display: block;
+      padding-top: 10px;
+    }
+  }
 
   .top-title {
     color: @c-white;
@@ -48,9 +59,7 @@
   }
 
   .content {
-    height: calc(100% - 30px);
-    overflow: hidden;
-
+    height: calc(100% - 68px - 30px);
     .c-lf {
       width: 252px;
 
@@ -494,7 +503,7 @@
       height: auto;
       background: @main-bg-color;
       position: absolute;
-      top: 0;
+      top: -30px;
       right: 0;
 
       article {

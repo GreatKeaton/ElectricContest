@@ -1,5 +1,8 @@
 <template>
   <div class="navigation stream-line">
+    <header>
+      <img src="../../images/header/logo.png" alt>
+    </header>
     <div class="top-title">
       <div class="search-inp">
         RMB: 19000
@@ -11,7 +14,7 @@
       </div>
     </div>
 
-    <div class="content flex">
+    <div class="content flex relative">
       <div class="c-lf">
         <ul class="main-list">
           <li class="gq" :class="{'active': listIndex === 1}" v-on:click.stop="listBind(1)">
@@ -162,12 +165,20 @@
             <li>
               <div class="lang-query">
                 <div class="lang-query-input" @click="isQueryLang = !isQueryLang">
-                  <img src="../../images/home/right/en.png" alt="">
+                  <img src="../../images/home/right/en.png" alt>
                   <i class="el-icon-caret-bottom"></i>
                 </div>
                 <ul v-show="isQueryLang" @click="isQueryLang = false">
-                  <router-link to="/streamline"><li><img src="../../images/home/right/zn.png" alt=""></li></router-link>
-                  <router-link to="/streamlineEn"><li><img src="../../images/home/right/en.png" alt=""></li></router-link>
+                  <router-link to="/streamline">
+                    <li>
+                      <img src="../../images/home/right/zn.png" alt>
+                    </li>
+                  </router-link>
+                  <router-link to="/streamlineEn">
+                    <li>
+                      <img src="../../images/home/right/en.png" alt>
+                    </li>
+                  </router-link>
                 </ul>
               </div>
             </li>
@@ -185,12 +196,12 @@
                 </div>
                 <div class="gq-detail">
                   <div>
-                     <div class="bshsf flex">
+                    <div class="bshsf flex">
                       <img src="../../images/home/nav/ir.png" alt>
                       <span class="c-blue">RNG</span>
                       <span>winner</span>
                       <span class="c-yellow">1.266</span>
-                     </div>
+                    </div>
                   </div>
                   <div class="two-going">
                     <span class="zs">second match in progress</span>
@@ -198,8 +209,12 @@
                   </div>
                   <p class="ct-going">
                     <span class="pic-icon">
-                      <router-link to="/studioEn"><img src="../../images/home/nav/video-icon.png" alt></router-link>
-                      <router-link to="/studio"><img src="../../images/home/nav/qs.png" alt></router-link>
+                      <router-link to="/studioEn">
+                        <img src="../../images/home/nav/video-icon.png" alt>
+                      </router-link>
+                      <router-link to="/studio">
+                        <img src="../../images/home/nav/qs.png" alt>
+                      </router-link>
                     </span>
                     <span
                       class="more"
@@ -288,14 +303,7 @@ export default {
         "我的",
         "Betting list"
       ],
-      moreClassifyLabelList: [
-        "Hot",
-        "Today",
-        "LOL",
-        "DUTA2",
-        "AOV",
-        "PUBG"
-      ]
+      moreClassifyLabelList: ["Hot", "Today", "LOL", "DUTA2", "AOV", "PUBG"]
     };
   },
   created() {},
@@ -345,19 +353,19 @@ export default {
   }
 }
 .game-list-box {
-  .bshsf{
+  .bshsf {
     width: 40% !important;
   }
 }
 </style>
 <style lang="less">
-.stream-line{
-  .lement-box{
+.stream-line {
+  .lement-box {
     padding: 10px;
-    .confirmed{
+    .confirmed {
       top: 5px !important;
     }
-    .bsjg-box{
+    .bsjg-box {
       margin-bottom: 15px !important;
     }
   }
