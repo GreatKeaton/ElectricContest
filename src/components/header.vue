@@ -6,17 +6,8 @@
           <img src="../images/header/logo.png" alt>
           <img
             src="../images/home/right/diamond.png"
-            class="version-switch"
-            alt
-            v-show="routhPath !== 'streamline'"
+            class="version-switch" alt
             @click="routerTo('streamline', 'streamline')"
-          >
-          <img
-            src="../images/home/right/diamond-2.png"
-            class="version-switch"
-            alt
-            v-show="routhPath === 'streamline'"
-            @click="routerTo('home', 'home')"
           >
         </div>
         <div class="setting" v-show="!isNotHeader">

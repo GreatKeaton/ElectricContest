@@ -8,16 +8,15 @@
             src="../images/home/right/diamond.png"
             class="version-switch"
             alt
-            v-show="routhPath !== 'streamlineEn'"
             @click="routerTo('streamlineEn', 'streamlineEn')"
           >
-          <img
+          <!-- <img
             src="../images/home/right/diamond-2.png"
             class="version-switch"
             alt
             v-show="routhPath === 'streamlineEn'"
             @click="routerTo('homeEn', 'homeEn')"
-          >
+          > -->
         </div>
         <div class="setting" v-show="isNotHeader">
           <div class="setItem pointer" @click="funcSetDialogVisible = true">Preferences</div>

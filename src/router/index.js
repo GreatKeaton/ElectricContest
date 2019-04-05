@@ -7,6 +7,8 @@ const home = r =>
 //首页英文版
 const homeEn = r =>
   require.ensure([], () => r(require("../views/home-en/navigation.vue")), "home-en");
+const anchorEn = r =>
+  require.ensure([], () => r(require("../views/anchor/index-en.vue")), "anchor");
 //首页精简版
 const streamlineEn = r =>
   require.ensure([], () => r(require("../views/streamline/index-en.vue")), "streamline");
@@ -44,6 +46,8 @@ const streamline = r =>
   require.ensure([], () => r(require("../views/streamline/index.vue")), "streamline");
 const studio = r =>
   require.ensure([], () => r(require("../views/streamline/studio.vue")), "studio"); 
+const anchor = r =>
+  require.ensure([], () => r(require("../views/anchor/index.vue")), "anchor");
 const quiz = r =>
   require.ensure([], () => r(require("../views/quiz/quiz.vue")), "quiz"); 
 //数据中心
@@ -92,6 +96,16 @@ export const RouterMap = [
     path: '/streamline',
     name: 'streamline',
     component: streamline,
+  },
+  {
+    path: '/anchorEn',
+    name: 'anchorEn',
+    component: anchorEn,
+  },
+  {
+    path: '/anchor',
+    name: 'anchor',
+    component: anchor,
   },
   {
     path: '/streamlineEn',

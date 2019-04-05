@@ -1,0 +1,190 @@
+.home-left {
+    width: 275px;
+    .clear-scroll;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    // 列表图标
+    .main-list {
+      .nav-list;
+
+      &>li {
+        &:before {
+          background: url('../../../images/home/nav/list.png') no-repeat;
+        }
+
+        &.active::before {
+          background: url('../../../images/home/nav/list-active.png') no-repeat;
+        }
+      }
+
+      .gq:before,
+      .gq.active::before {
+        background-position: 0 0;
+      }
+
+      .jr:before,
+      .jr.active::before {
+        background-position: -32px 0;
+      }
+
+      .zp:before,
+      .zp.active::before {
+        background-position: -64px 0;
+      }
+
+      .hot:before,
+      .hot.active::before {
+        background-position: -96px 0;
+      }
+
+      .like:before,
+      .like.active::before {
+        background-position: -128px 0;
+      }
+
+      .all:before,
+      .all.active::before {
+        background-position: -160px 0;
+      }
+
+      .zdy:before {
+        background: url('../../../images/home/nav/zdy.png') no-repeat center center;
+      }
+
+      .dzym {
+        &::before {
+          background: none;
+        }
+
+        dt {
+          color: #fff;
+          padding-left: 5px;
+          font-size: 14px;
+          line-height: 30px;
+          padding-top: 15px;
+        }
+
+        .title {
+          font-size: 18px;
+          padding: 5px 15px;
+          background: -prefix-linear-zgradient(top, #001529, #014771);
+          background: linear-gradient(to bottom, #001529, #014771);
+        }
+
+        dd {
+          &>span {
+            background: #12507b;
+            width: 28%;
+            margin-right: 5%;
+            font-size: 14px;
+            line-height: 30px;
+            border-radius: 5px;
+            .tx-ct;
+            .in-block;
+            .relative;
+
+            i {
+              .absolute;
+              top: -5px;
+              width: 10px;
+              height: 10px;
+              right: -5px;
+              color: #fff;
+              font-size: 12px;
+            }
+          }
+        }
+
+        .btn-group {
+          .flex;
+
+          button {
+            flex: 1;
+            margin: 20px 10px 20px 0;
+            line-height: 40px;
+            background: #014880;
+            color: #a1b7ce;
+            border-width: 0;
+            font-size: 14px;
+            cursor: pointer;
+
+            &.active {
+              color: #fff;
+              background: url("../../../images/home/nav/zh-active.png") no-repeat bottom center;
+              background-size: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    // 滚球二级目录
+    .list-2 {
+      .nav-list2;
+      max-height: 402px;
+      overflow-y: auto;
+
+      &>li {
+        &:before {
+          background: url('../../../images/home/nav/game.png') no-repeat center center;
+        }
+      }
+
+      .yxlm::before {
+        background-position: 0 0;
+      }
+
+      .wzry:before {
+        background-position: -32px 0;
+      }
+
+      .jdqs:before {
+        background-position: -64px 0;
+      }
+
+      .zq:before {
+        background-position: -96px 0;
+      }
+
+      .lq:before {
+        background-position: -128px 0;
+      }
+
+      .swxf:before {
+        background-position: -160px 0;
+      }
+
+      .lscs:before {
+        background-position: -192px 0;
+      }
+
+      .mszb:before {
+        background-position: -224px 0;
+      }
+    }
+
+    .list-3 {
+      &>li {
+        line-height: 35px;
+        padding-left: 42px;
+        background: transparent;
+
+        em {
+          right: 20px;
+          .absolute;
+        }
+
+        &.active {
+          color: @primary-color;
+          padding-left: 40px;
+          border-left: 2px solid @primary-color;
+          background: rgba(23, 62, 98, .4);
+
+          em {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }

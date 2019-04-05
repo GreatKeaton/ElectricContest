@@ -235,7 +235,7 @@ export default {
 @import "../../../styles/common";
 @import "../../../styles/share";
 .chat-room {
-  height: 724px;
+  height: calc(100% - 50px) !important;
   .relative;
   .chat-content {
     background: #07111b;

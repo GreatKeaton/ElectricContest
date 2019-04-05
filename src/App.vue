@@ -48,7 +48,7 @@ export default {
   mounted() {
     // let rn = this.$route.name;
     // if (rn === "studio") this.routeParams = rn;
-     console.log(this.routeParams, this.routeName);
+    //  console.log(this.routeParams, this.routeName);
   },
   watch: {
     $route(to, from) {

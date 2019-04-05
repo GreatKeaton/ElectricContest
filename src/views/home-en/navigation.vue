@@ -12,7 +12,7 @@
     <div class="top-title">
       <div class="search-inp">
         <input type="text" placeholder="Stimulate the battlefield" maxlength="20">
-        <i slot="suffix" class="el-input__icon el-icon-search" @click="searchInfo"></i>
+        <i slot="suffix" class="el-input__icon el-icon-search"></i>
         <img src="../../images/home/nav/icon_video.png" alt class="video-icon">
       </div>
       <div class="marquee" v-if="showMarquee">
@@ -40,7 +40,7 @@
     </div>
 
     <div class="content flex">
-      <div class="c-lf">
+      <!-- <div class="c-lf">
         <ul class="main-list">
           <li
             v-for="(item, index) in gameList"
@@ -105,8 +105,8 @@
             <span>self setting sports type</span>
           </li>
         </ul>
-      </div>
-
+      </div> -->
+      <leftMode style="width: 252px;"></leftMode>
       <div class="c-ct relative">
         <div
           class="video-box"
@@ -128,15 +128,15 @@
             <img src="../../images/home/right/off.png" alt="">
             <img src="../../images/home/right/refresh.png" alt="">
             <div class="right-list right">
-              <a href="javascript:;">关注</a>
+              <a href="javascript:;">follow</a>
               <img src="../../images/home/right/laba.png" alt="">
-              <a href="javascript:;">超清</a>
+              <a href="javascript:;">Ultra-clear</a>
               <div class="dm-query in-block">
-                <span>弹幕</span>
+                <span>Barrage</span>
                 <i></i>
               </div>
-              <a href="javascript:;" @click="rightPage = 'chatRoom'; rightBetListType = 'lts'">进入直播间</a>
-              <span @click="isWindowSpring = true">弹窗</span>
+              <a href="#/anchorEn">go live room</a>
+              <span @click="isWindowSpring = true">Pop-ups</span>
               <img src="../../images/home/right/enlarge.png" alt="">
             </div>
           </div>
@@ -480,6 +480,7 @@
 <script>
 import myMarquee from "@/components/mymarquee";
 import rechargeHtml from "@/views/home/rechargeBox";
+import leftMode from "./left/index";
 import settlementHtml from "./right/settlement"; // 待结算
 import charRoom from "./right/chatRoom";
 import singleBet from "./right/singleBet"; // 投注
@@ -495,10 +496,6 @@ export default {
       showMarquee: true,
       iptInfo: "",
       placeholderInfo: "Stimulate the battlefield",
-      listIndex: 1,
-      listIndex2: 1,
-      listIndex3: 1,
-      listIndex4: 2,
       operateIndex: 1,
       menuIndex: 1,
       newPanelHide: true,
@@ -521,47 +518,7 @@ export default {
       lists: [
         "Due to the delay settlement of Wanbo Sports, if you are unable to sign in (members who cannot sign in before January 11, 2019), please contact customer service for a replacement."
       ],
-      moreClassifyLabelList: JSON.parse(localStorage.getItem('moreListEn')) || [
-        {name: "Recom", css: "like"},
-        {name: "Today", css: "like"},
-        {name: "LOL", css: "like"},
-        {name: "DUTA2", css: "like"},
-        {name: "AOV", css: "like"},
-        {name: "PUBG", css: "like"}
-      ],
-      gameList: JSON.parse(localStorage.getItem('gameListEn')) || [
-        {
-          name: "Snowball",
-          css: "gq",
-          children: [
-            {
-              name: "LOL",
-              num: 49,
-              children: [
-                { name: "LCK", num: 6},
-                { name: "LGK", num: 1}
-              ], css: "yxlm" 
-            },
-            { name: "AOV", css: "wzry"  },
-            { name: "PUBG", css: "jdqs"  },
-            { name: "soccer", css: "zq"  },
-            { name: "basketball", css: "lq"  },
-            { name: "overwatch", css: "swxf"  },
-            { name: "Hearthstone", css: "lscs"  },
-            { name: "Warcraft III", css: "mszb"  }
-          ]
-        },
-        { name: "today", css: "jr" },
-        { name: "early bet", css: "zp" },
-        { name: "you may also like", css: "hot" },
-        { name: "my recommendation", css: "like" },
-        { name: "all matches", css: "all" }
-      ],
-      functionList: [],
     };
-  },
-  created() {
-    this.functionList = JSON.parse(JSON.stringify(this.gameList));
   },
   computed: {
     getUserIcons() {
@@ -576,6 +533,7 @@ export default {
   components: {
     myMarquee,
     settlementHtml,
+    leftMode,
     charRoom,
     singleBet,
     areas,
@@ -607,12 +565,6 @@ export default {
         document.onmouseup = null;
       };
     },
-    doneAdd: function(){
-      this.gameList = this.functionList;
-      this.listIndex = false;
-      localStorage.setItem('gameListEn', JSON.stringify(this.gameList));
-      localStorage.setItem('moreListEn', JSON.stringify(this.moreClassifyLabelList))
-    },
     rightListNav: function(type) {
       this.rightBetListType = type;
     },
@@ -621,36 +573,6 @@ export default {
       this.dialogVisible = true;
       this.dialogIndex = ind;
     },
-    moreClassify: function(data, ind) {
-      this.functionList.push(data);
-      Array.from(new Set(this.functionList));
-      this.moreClassifyLabelList = this.objectEach(
-        this.moreClassifyLabelList,
-        ind
-      );
-    },
-    functionbind: function(data, ind) {
-      this.moreClassifyLabelList.push(data);
-      this.functionList = this.objectEach(this.functionList, ind);
-    },
-    objectEach: function(data, ind) {
-      let list = [];
-      data.forEach((v, k) => {
-        if (k === ind) return;
-        list.push(v);
-      });
-      return list;
-    },
-    listBind: function(ind = 1) {
-      this.listIndex = this.listIndex === ind ? !this.listIndex : ind;
-    },
-    listBind2: function(ind = 1) {
-      this.listIndex2 = this.listIndex2 === ind ? !this.listIndex2 : ind;
-    },
-    listBind3: function(ind = 1) {
-      this.listIndex3 = this.listIndex3 === ind ? !this.listIndex3 : ind;
-    },
-    searchInfo() {}
   }
 };
 </script>

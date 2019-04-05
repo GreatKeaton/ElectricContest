@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation">
+  <div class="anchor relative">
     <img
       src="../../images/home/nav/video.png"
       alt
@@ -9,38 +9,30 @@
       @mousedown="move"
       @dblclick="isWindowSpring = false"
     >
-    <div class="top-title">
-      <div class="search-inp">
-        <input type="text" placeholder="刺激战场" maxlength="20">
-        <i slot="suffix" class="el-input__icon el-icon-search"></i>
-        <img src="../../images/home/nav/icon_video.png" alt class="video-icon">
-      </div>
-      <div class="marquee" v-if="showMarquee">
-        <img src="../../images/home/nav/announce.png" alt>
-        <my-marquee :lists="lists"></my-marquee>
-      </div>
-      <div class="tz">
-        <span>
-          快速投注
-          <img src="../../images/home/nav/tz.png" alt>
-        </span>
-        <span>
-          水位：默认
-          <img src="../../images/home/nav/xl.png" alt>
-        </span>
-        <span>
-          选择联赛：全部
-          <img src="../../images/home/nav/xl.png" alt>
-        </span>
-        <span>
-          赔率：香港盘
-          <img src="../../images/home/nav/xl.png" alt>
-        </span>
-      </div>
-    </div>
-
     <div class="content flex">
-      <leftMode style="width: 252px;"></leftMode>
+      <div class="left-content clearfix">
+        <div class="list-data" v-show="isShrink">
+          <leftMode></leftMode>
+          <span class="shrink cspn" @click="isShrink = !isShrink">
+            <i :class="isShrink ? 'el-icon-arrow-left' : 'el-icon-arrow-right'"></i>
+          </span>
+        </div>
+        <div class="simplify-list" v-show="!isShrink">
+          <ul class="main-list">
+            <li
+              v-for="(item, index) in gameList"
+              :key="index"
+              :class="[listIndex === index ? item.css + ' active' : item.css]"
+              v-on:click.stop="listIndex = index; isShrink = true"
+            >
+              <span>{{item.name}}</span>
+            </li>
+          </ul>
+          <span class="shrink cspn" @click="isShrink = !isShrink">
+            <i :class="isShrink ? 'el-icon-arrow-left' : 'el-icon-arrow-right'"></i>
+          </span>
+        </div>
+      </div>
       <div class="c-ct relative">
         <div
           class="video-box"
@@ -48,15 +40,17 @@
           @mouseover="videoClass='video-top-icon'; videoBottomClass='video-bottom-icon'"
           @mouseout="videoClass='video-top-hide'; videoBottomClass='video-bottom-hide'"
         >
-          <img src="../../images/home/nav/video.png" alt width="100%">
+          <img src="../../images/home/nav/video.png" alt width="100%" v-show="!isCutoverVideo">
+          <img src="../../images/home/nav/outs-game.jpg" alt width="100%" v-show="isCutoverVideo">
+          <img src="../../images/streamline/qh.png" class="cutover" alt="" @click="isCutoverVideo = !isCutoverVideo">
           <div class="play-top" :class="videoClass">
-            <!-- <img src="../../images/home/right-en/canel.jpg" class="canel-icon" alt="">
+            <img src="../../images/streamline/canel.png" class="canel-icon" alt="">
             <div class="bszj">
               <p>2019-01-31</p>
               <p>B03 <span class="c-blue">第三局进行中</span></p>
-            </div>-->
+            </div>
             <img src="../../images/home/right-en/top.jpg" class="top-icon" alt>
-            <!-- <a href="javascript:;" class="zb-btn">主播视频</a> -->
+            <a href="javascript:;" class="zb-btn">主播视频</a>
           </div>
           <div class="play-list clearfix" :class="videoBottomClass">
             <img src="../../images/home/right/off.png" alt>
@@ -73,152 +67,49 @@
                 <span>弹幕</span>
                 <i></i>
               </div>
-              <a href="#/anchor">进入直播间</a>
+              <a href="#/home" @click="rightBetListType = 'lts';">进入直播间</a>
               <span class="cspn" @click="isWindowSpring = true">弹窗</span>
               <img class="cspn" src="../../images/home/right/enlarge.png" alt>
             </div>
           </div>
         </div>
-        <img
-          src="../../images/home/right/enter-video.png"
-          alt
-          class="go-chat-room-nav"
-          @click="rightPage = 'chatRoom'; rightBetListType = 'lts'"
-          v-show="rightPage !== 'chatRoom'"
-        >
         <div class="game-info">
           <div class="game-scoll">
-            <article v-for="(item, index) in new Array(8)" v-bind:key="index">
-              <h1>2019 LCK春赛季</h1>
-              <div>
-                <div class="gq-title">
-                  <img src="../../images/home/nav/LOL.png" alt>
-                  <span>2019-01-17 19:00</span>
-                </div>
-                <div class="gq-detail">
-                  <div>
-                    <img src="../../images/home/nav/ir.png" alt>
-                    <span class="c-blue">RNG</span>
+            <ul class="cont-title">
+              <li :class="{'active': queryType === 1}" @click="queryType = 1">所有下注</li>
+              <li :class="{'active': queryType === 2}" @click="queryType = 2">第一局</li>
+              <li :class="{'active': queryType === 3}" @click="queryType = 3">第二局</li>
+              <li :class="{'active': queryType === 4}" @click="queryType = 4">第三局</li>
+            </ul>
+            <dl class="more-bet-box">
+              <dt></dt>
+              <dd>
+                <ul class="bs-result">
+                  <li v-for="(item, index) in new Array(10)" v-bind:key="index">
                     <span>比赛获胜方</span>
-                    <span
-                      class="c-yellow cspn"
-                      @click="rightPage = 'chatRoom';rightBetListType = 'tzlb'; betListIndex=2"
-                    >1.266</span>
-                  </div>
-                  <p class="ct-going">
-                    <span class="two-going">第二局进行中</span>
-                    <span class="pic-icon">
-                      <img src="../../images/home/nav/home.png">
-                      <img src="../../images/home/nav/video-icon.png" alt title="聊天室"
-                        @click="rightPage = 'chatRoom';rightBetListType = 'lts'">
-                      <img src="../../images/home/nav/qs.png" alt>
-                      <img src="../../images/home/nav/5666.png" alt>
+                    <span>
+                      <b>RY</b>1.36
                     </span>
-                    <span
-                      class="more"
-                      @click="moreBetInd = (moreBetInd === index) ? false : index"
-                    >更多投注</span>
-                  </p>
-                  <div>
-                    <img src="../../images/home/nav/we.png" alt>
-                    <span class="c-blue">RNG</span>
-                    <span>比赛获胜方</span>
-                    <span
-                      class="c-yellow cspn"
-                      @click="rightPage = 'chatRoom';rightBetListType = 'tzlb';betListIndex=2"
-                    >1.266</span>
-                    <span>赛制：三局两胜</span>
-                  </div>
-                </div>
-              </div>
-              <dl v-show="moreBetInd === index" class="more-bet-box">
-                <dt>
-                  <span>所有下注</span>
-                  <span>第一局</span>
-                  <span>第二局</span>
-                  <span>第三局</span>
-                </dt>
-                <dd>
-                  <ul class="bs-result">
-                    <li v-for="(item, index) in new Array(10)" v-bind:key="index">
-                      <span>比赛获胜方</span>
-                      <span>
-                        <b>RY</b>1.36
-                      </span>
-                      <span>
-                        <b>GS</b> 2.941
-                      </span>
-                    </li>
-                  </ul>
-                </dd>
-              </dl>
-            </article>
+                    <span>
+                      <b>GS</b> 2.941
+                    </span>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
           </div>
         </div>
       </div>
 
       <div class="c-rt">
-        <div class="content-1" v-if="rightPage === 'info'">
-          <div class="fund">
-            <div class="user">
-              <img src="../../images/home/nav/tx.png" alt>
-              <div>
-                <span>M116998898</span>
-                <span class="svip">电竞大师</span>
-                <span class="lift">108</span>
-              </div>
-            </div>
+        <div class="live-box" v-show="!isCloseLive">
+            <img src="../../images/home/nav/video.png" class="live-video" alt v-show="isCutoverVideo">
+            <img src="../../images/home/nav/outs-game.jpg" class="live-video" alt="" v-show="!isCutoverVideo">
 
-            <ul class="info list-flex">
-              <li>
-                <img src="../../images/home/nav/ye.png" alt>
-                <span>余额</span>
-                <small>956120.00</small>
-              </li>
-              <li>
-                <img src="../../images/home/nav/jf.png" alt>
-                <span>积分</span>
-                <small>184619</small>
-              </li>
-              <li>
-                <img src="../../images/home/nav/pm.png" alt>
-                <span>排名</span>
-                <small>59</small>
-              </li>
-            </ul>
-
-            <ul class="operate list-flex">
-              <li :class="{'active': operateIndex === 1}" @click="rechargeBind(1)">充值</li>
-              <li :class="{'active': operateIndex === 2}" @click="rechargeBind(2)">提款</li>
-              <!-- <li :class="{'active': operateIndex === 3}" @click="rechargeBind(3)">转账</li> -->
-            </ul>
-          </div>
-
-          <article class="news" v-if="newPanelHide">
-            <h1>
-              热门新闻
-              <i class="close" v-on:click.stop="newPanelHide = false"></i>
-            </h1>
-            <img src="../../images/home/nav/menu.jpg" alt>
-          </article>
-
-          <article class="menus">
-            <h1>自定义菜单</h1>
-            <ul class>
-              <li class="cz" :class="{'active': menuIndex === 1}" @click="menuIndex = 1">充值</li>
-              <li class="tq" :class="{'active': menuIndex === 2}" @click="menuIndex = 2">提取</li>
-              <li class="zz" :class="{'active': menuIndex === 3}" @click="menuIndex = 3">排行榜</li>
-              <li class="zxkf" :class="{'active': menuIndex === 4}" @click="menuIndex = 4">在线客服</li>
-              <li class="zzkf" :class="{'active': menuIndex === 5}" @click="menuIndex = 5">自助客服</li>
-              <li class="wdyh" :class="{'active': menuIndex === 6}" @click="menuIndex = 6">我的优惠</li>
-              <li class="jpmt" :class="{'active': menuIndex === 7}" @click="menuIndex = 7">精品美图</li>
-              <li class="gd" :class="{'active': menuIndex === 8}" @click="menuIndex = 8">更多</li>
-            </ul>
-            <a class>确认</a>
-          </article>
+            <img src="../../images/streamline/qh.png" class="cutover" alt="" @click="isCutoverVideo = !isCutoverVideo">
+            <img src="../../images/streamline/close.png" class="close-live" alt="" @click="isCloseLive = true">
         </div>
-
-        <div class="content-2 relative" v-if="rightPage === 'chatRoom'" @click="betList2=false">
+        <div class="content-2 relative" @click="betList2=false">
           <ul class="title">
             <li
               :class="{'active': rightBetListType === item.type}"
@@ -227,8 +118,16 @@
               v-bind:key="index"
             >
               {{item.name}}
-              <i class="el-icon-caret-bottom" v-show="item.children && !betList2" @click="betList2 = index + 1"></i>
-              <i class="el-icon-caret-top" v-show="item.children && betList2" @click="betList2 = !betList2"></i>
+              <i
+                class="el-icon-caret-bottom"
+                v-show="item.children && !betList2"
+                @click="betList2 = index + 1"
+              ></i>
+              <i
+                class="el-icon-caret-top"
+                v-show="item.children && betList2"
+                @click="betList2 = !betList2"
+              ></i>
               <ul class="list-2" v-show="betList2 === index + 1">
                 <li
                   @click="betListIndex = (ind2 +1);betList2=false;"
@@ -407,15 +306,15 @@
 <script>
 import myMarquee from "@/components/mymarquee";
 import rechargeHtml from "@/views/home/rechargeBox";
-import leftMode from "./left/index";
-import settlementHtml from "./right/settlement"; // 待结算
-import charRoom from "./right/chatRoom";
-import singleBet from "./right/singleBet"; // 投注
-import areas from "./right/sunDryArea";
-import outs from "./right/outs";
-import squad from "./right/squad"; // 阵容
-import datas from "./right/data"; // 数据
-import mores from "./right/more"; // 更多
+import leftMode from "../home/left/index";
+import settlementHtml from "../home/right/settlement"; // 待结算
+import charRoom from "../home/right/chatRoom";
+import singleBet from "../home/right/singleBet"; // 投注
+import areas from "../home/right/sunDryArea";
+import outs from "../home/right/outs";
+import squad from "../home/right/squad"; // 阵容
+import datas from "../home/right/data"; // 数据
+import mores from "../home/right/more"; // 更多
 
 export default {
   data() {
@@ -426,7 +325,6 @@ export default {
       operateIndex: 1,
       menuIndex: 1,
       newPanelHide: true,
-      rightPage: "info",
       betList2: false,
       betListIndex: 1,
       dialogVisible: false,
@@ -441,15 +339,29 @@ export default {
       isWindowSpring: false,
       positionX: 0,
       positionY: 0,
+      queryType: 2,
+      isShrink: false,
+      gameList: [],
+      listIndex: 1,
+      isCutoverVideo: false,
+      isCloseLive: false,
       lists: [
         "由于万博体育延时结算，如果无法签到(2019年1月11日之前无法签到的会员)，请联系客服进行补签。"
       ],
       priceList: ["100", "200", "1000", "2000", "3000"],
-      rightNavList: this.$store.state.rightNavList || []
+      rightNavList: this.$store.state.rightNavList || [],
+      gameList: JSON.parse(localStorage.getItem("gameList")) || [
+        { name: "滚球", css: "gq" },
+        { name: "今日", css: "jr" },
+        { name: "早盘", css: "zp" },
+        { name: "猜你喜欢", css: "hot" },
+        { name: "我的推荐", css: "like" },
+        { name: "所有赛事", css: "all" }
+      ]
     };
   },
   created() {
-    this.rightNavList
+    this.rightNavList;
   },
   computed: {
     getUserIcons() {
@@ -504,7 +416,7 @@ export default {
     rightListNav: function(type) {
       this.rightBetListType = type;
       // if (type === "tzlb") this.betList2 = !this.betList2;
-    },
+    }
   }
 };
 </script>
@@ -512,7 +424,7 @@ export default {
 <style lang="less" scoped>
 @import "../../styles/main";
 @import "../../styles/common";
-@import "./navigation";
+@import "./index";
 </style>
 <style lang="less">
 .el-dialog__header {
