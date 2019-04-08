@@ -659,7 +659,7 @@ export default {
   methods: {
     goPage: function(page){
       this.$router.push({name: page});
-      localStorage.setItem('routeHeader', 'home');
+      // localStorage.setItem('routeHeader', 'home');
     },
     listBind: function(ind = 1) {
       this.listIndex = this.listIndex === ind ? !this.listIndex : ind;
@@ -669,8 +669,7 @@ export default {
     },
     listBind3: function(ind = 1) {
       this.listIndex3 = this.listIndex3 === ind ? !this.listIndex3 : ind;
-    },
-    searchInfo() {}
+    }
   },
   components: {
     myMarquee,

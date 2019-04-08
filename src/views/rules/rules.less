@@ -1,96 +1,160 @@
-.rules{
-    .flex;
-    .contain-body;
+.rules {
+  
+  .contain-body;
 
-    .left{
-        width: 252px;
-        padding-top: 10px;
+  &>header {
+    margin-bottom: 8px;
+    height: 60px;
+   
+    img {
+      margin-left: 10px;
+      .in-block;
+      padding-top: 10px;
+      margin-right: 20px;
+    }
+  }
 
-        // 列表图标
-        .main-list{
-            .nav-list;
-            &>li{
-                font-size: 16px;
-                em{
-                    .absolute;
-                    width: 30px;
-                    height: 21px;
-                    right: 15px;
-                    top: 15px;
-                    background: url('../../images/rules/down.png') no-repeat;
-                    .in-block;
-                }
+  .rules-content{
+      .flex;
+      .block;
+      width: 100%;
+  }
 
-                &:before{
-                    width: 42px;
-                    height: 42px;
-                    top: 4px;
-                    background: url('../../images/rules/list.png') no-repeat;
-                }
-                
-                &.active{
-                    &:before{
-                        background: url('../../images/rules/list-active.png') no-repeat;
-                    }
-                    em{
-                        background: url('../../images/rules/up.png') no-repeat;
-                    }
-                }
-            }
-            .spjc:before, .spjc.active:before{ background-position: 0 0; }
-            .xsjc:before, .xsjc.active:before{ background-position: -42px 0; }
-            .ckbz:before, .ckbz.active:before{ background-position: -84px 0; }
-            .pkjs:before, .pkjs.active:before{ background-position:  -126px 0; } 
-            .yxgz:before, .yxgz.active:before{ background-position: -168px 0; }
+  .left {
+    width: 252px;
+    padding-top: 10px;
+
+    // 列表图标
+    .main-list {
+      .nav-list;
+
+      &>li {
+        font-size: 16px;
+
+        em {
+          .absolute;
+          width: 30px;
+          height: 21px;
+          right: 15px;
+          top: 15px;
+          background: url('../../images/rules/down.png') no-repeat;
+          .in-block;
         }
 
-        
-        .list-2{
-            .nav-list2;
-            max-height: 402px;
-            overflow-y: auto;
-            
-            &>li{
-                &:before{
-                    width: 42px;
-                    height: 42px;
-                    background: url('../../images/rules/list2.png') no-repeat center center;
-                    top: 4px;
-                    left: 10px;
-                }
-                &.active:before{
-                    background: url('../../images/rules/list2-active.png') no-repeat;
-                }
-                &>span{
-                    padding-left: 58px;
-                }
-            }
-            .yxjs::before, .yxlm.active:before{ background-position: 0 0; }
-            .czjj:before, .czjj.active:before{ background-position: -42px 0; }
-            .rwlq:before, .rwlq.active:before{ background-position: -84px 0; }
-            .xzjc:before, .xzjc.active:before{ background-position:  -126px 0; }
-            .qtfw:before, .qtfw.active:before{ background-position:  -168px 0; }
+        &:before {
+          width: 42px;
+          height: 42px;
+          top: 4px;
+          background: url('../../images/rules/list.png') no-repeat;
         }
+
+        &.active {
+          &:before {
+            background: url('../../images/rules/list-active.png') no-repeat;
+          }
+
+          em {
+            background: url('../../images/rules/up.png') no-repeat;
+          }
+        }
+      }
+
+      .spjc:before,
+      .spjc.active:before {
+        background-position: 0 0;
+      }
+
+      .xsjc:before,
+      .xsjc.active:before {
+        background-position: -42px 0;
+      }
+
+      .ckbz:before,
+      .ckbz.active:before {
+        background-position: -84px 0;
+      }
+
+      .pkjs:before,
+      .pkjs.active:before {
+        background-position: -126px 0;
+      }
+
+      .yxgz:before,
+      .yxgz.active:before {
+        background-position: -168px 0;
+      }
     }
 
-    .right{
-        width: calc(100% - 272px);
-        margin-left: 10px;
-        margin-top: 10px;
 
-        h1{
-            color: @c-white;
-            height: 40px;
-            line-height: 40px;
-            padding-left: 15px;
-            font-weight: bold;
-            font-size: 16px;
-            background: #0d3256;
+    .list-2 {
+      .nav-list2;
+      max-height: 402px;
+      overflow-y: auto;
+
+      &>li {
+        &:before {
+          width: 42px;
+          height: 42px;
+          background: url('../../images/rules/list2.png') no-repeat center center;
+          top: 4px;
+          left: 10px;
         }
-        video{
-            width: 100%;
-            height: 626px;
-            margin-top: -6px;
+
+        &.active:before {
+          background: url('../../images/rules/list2-active.png') no-repeat;
         }
+
+        &>span {
+          padding-left: 58px;
+        }
+      }
+
+      .yxjs::before,
+      .yxlm.active:before {
+        background-position: 0 0;
+      }
+
+      .czjj:before,
+      .czjj.active:before {
+        background-position: -42px 0;
+      }
+
+      .rwlq:before,
+      .rwlq.active:before {
+        background-position: -84px 0;
+      }
+
+      .xzjc:before,
+      .xzjc.active:before {
+        background-position: -126px 0;
+      }
+
+      .qtfw:before,
+      .qtfw.active:before {
+        background-position: -168px 0;
+      }
     }
+  }
+
+  .right {
+    width: calc(100% - 272px);
+    margin-left: 10px;
+    margin-top: 10px;
+
+    h1 {
+      color: @c-white;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      background: #0d3256;
+    }
+
+    video {
+      width: 100%;
+      height: 626px;
+      margin-top: -6px;
+    }
+  }
 }
