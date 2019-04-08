@@ -200,6 +200,7 @@ export default {
   padding: 0;
 }
 .sun-dry-area {
+  height: calc(100% - 50px);
   .item-content {
     background: #1f6098;
     font-size: 12px;
@@ -207,7 +208,7 @@ export default {
     .in-block;
   }
   .chat-room {
-    height: 724px;
+    height: 100%;
     .chat-content {
       background: #07111b;
       padding: 5px;

@@ -108,9 +108,8 @@
                   <p class="ct-going">
                     <span class="two-going">第二局进行中</span>
                     <span class="pic-icon">
-                      <img src="../../images/home/nav/home.png">
-                      <img src="../../images/home/nav/video-icon.png" alt title="聊天室"
-                        @click="rightPage = 'chatRoom';rightBetListType = 'lts'">
+                      <img src="../../images/home/nav/home.png" @click="rightPage = 'chatRoom';rightBetListType = 'lts'">
+                      <router-link to="/anchor"><img src="../../images/home/nav/video-icon.png" alt title="聊天室"></router-link>
                       <img src="../../images/home/nav/qs.png" alt>
                       <img src="../../images/home/nav/5666.png" alt>
                     </span>

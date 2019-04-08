@@ -3,7 +3,7 @@
     <header>
       <img src="../../images/header/logo.png" alt>
       <router-link to="/homeEn"><img
-          src="../../images/home/right/diamond-2.png"
+          src="../../images/home/right-en/logo2.png"
           class="version-switch mt-10" alt></router-link>
     </header>
     <div class="top-title">

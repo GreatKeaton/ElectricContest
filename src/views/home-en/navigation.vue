@@ -170,12 +170,12 @@
                   <p class="ct-going">
                     <span class="two-going">second match in progress</span>
                     <span class="pic-icon cspn">
-                      <img src="../../images/home/nav/home.png" alt>
-                      <img
+                      <img src="../../images/home/nav/home.png" @click="rightPage = 'chatRoom';rightBetListType = 'lts'" alt>
+                      <router-link to="/anchorEn"><img
                         src="../../images/home/nav/video-icon.png"
                         title="chatroom"
-                        @click="rightPage = 'chatRoom';rightBetListType = 'lts'"
-                      >
+                      ></router-link>
+                      
                       <img src="../../images/home/nav/qs.png" alt>
                       <img src="../../images/home/nav/5666.png" alt>
                     </span>

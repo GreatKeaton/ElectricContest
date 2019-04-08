@@ -52,6 +52,7 @@ export default {
             &.active{
                 color: #fff;
                 background: url("../../../images/home/nav/zh-active.png") no-repeat bottom center;
+                background-position: 100% 100%;
             }
         }
     }

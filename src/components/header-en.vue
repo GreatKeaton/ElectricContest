@@ -5,7 +5,7 @@
         <div class="logo">
           <img src="../images/header/logo.png" alt>
           <img
-            src="../images/home/right/diamond.png"
+            src="../images/home/right-en/logo1.png"
             class="version-switch"
             alt
             @click="routerTo('streamlineEn', 'streamlineEn')"
