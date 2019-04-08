@@ -5,8 +5,9 @@
 .c-blue {
   color: #1351c3;
 }
-.c-tblue{
-    color: #5fc4e2;
+
+.c-tblue {
+  color: #5fc4e2;
 }
 
 .studio {
@@ -24,6 +25,61 @@
       display: block;
       padding-top: 10px;
     }
+
+  }
+
+  .studio-title {
+    background: rgba(17, 51, 87, .8);
+    height: 80px;
+    vertical-align: middle;
+    border-bottom: 2px solid #0d2335;
+    width: 96%;
+    margin-left: 2%;
+    color: #fff;
+    .block;
+
+    .canel-icon {
+      margin: 16px;
+      .in-block;
+    }
+
+    .bet-info {
+      .absolute;
+      top: 15px;
+      line-height: 25px;
+    }
+
+    .bs-team {
+      .absolute;
+      left: 50%;
+      top: 0;
+      margin-left: -300px;
+    }
+
+    .bet-type {
+      height: 80px;
+      width: 278px;
+      .cspn;
+      .flex;
+      .absolute;
+      right: 0;
+      top: 0;
+
+      li {
+        color: #9ca7b6;
+
+        line-height: 80px;
+        flex: 1;
+        .tx-ct;
+        
+
+        &.active {
+          background: url('../../images/streamline/active.png') no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    }
+
   }
 
   &>div {
@@ -33,36 +89,11 @@
   }
 
   .left-box {
-    width: 67%;
-    height: calc(100% - 68px);
+    width: 55%;
+    height: calc(100% - 66px);
     margin-left: 2%;
     margin-right: 1%;
     color: #fff;
-
-    .title {
-      background: rgba(17, 51, 87, .8);
-      height: 80px;
-      vertical-align: middle;
-      border-bottom: 2px solid #0d2335;
-
-      .canel-icon {
-        margin: 16px;
-        .in-block;
-      }
-
-      .bet-info {
-        .absolute;
-        top: 15px;
-        line-height: 25px;
-      }
-
-      .bs-team {
-        .absolute;
-        left: 50%;
-        top: 0;
-        margin-left: -300px;
-      }
-    }
 
     .left-content {
       height: calc(100% - 80px - 65px);
@@ -176,32 +207,131 @@
   }
 
   .right-box {
-    width: 28%;
+    width: 40%;
+    height: calc(100% - 148px);
+    .relative;
 
-    .bet-type {
-      background: rgba(20, 54, 87, .7);
-      .flex;
-
-      li {
-        color: #9ca7b6;
-        line-height: 50px;
-        flex: 1;
+    article {
+      h1 {
+        background: rgba(22, 83, 142, .5);
+        line-height: 40px;
+        color: #aacbe8;
+        font-weight: normal;
+        font-size: 20px;
         .tx-ct;
-        .cspn;
+      }
 
-        &.active-left {
-          background: url('../../images/streamline/bet-left.png') no-repeat;
+      &>div {
+        padding: 10px;
+        .relative;
+      }
+
+      div {
+        .title {
+          .tx-ct;
+          .absolute;
+          top: 15px;
+          left: 25%;
+          width: 50%;
+          font-size: 14px;
+
+          p {
+            color: #fff;
+          }
+
+          span {
+            color: #335270;
+            font-size: 12px;
+          }
         }
 
-        &.active-right {
-          background: url('../../images/streamline/bet-right.png') no-repeat;
+        .vs-team {
+          width: 70%;
+          margin: 20px auto;
+          .flex;
+          justify-content: center;
+          align-items: center;
+
+          &>* {
+            flex: 1;
+            .tx-ct;
+          }
+
+          &>span {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            vertical-align: middle;
+
+          }
+
+          &>div {
+            .tx-ct;
+
+            img {
+              .block;
+              width: 100px;
+              flex: none;
+              margin: 0 auto;
+              margin-bottom: 10px;
+            }
+
+            em {
+              color: #68a3de;
+            }
+          }
+        }
+
+        .match-situation {
+          color: #aacbe8;
+          font-size: 14px;
+          padding: 0 10px;
+          .tx-ct;
+
+          &>span {
+            width: 8%;
+            .in-block;
+          }
+
+          .prograss-info {
+            .in-block;
+            width: 80%;
+            margin-bottom: 15px;
+
+            p {
+              padding-bottom: 6px;
+
+              span {
+                &:first-child {
+                  .c-red;
+                }
+
+                &:last-child {
+                  color: #3a6ecf;
+                }
+              }
+            }
+          }
         }
       }
     }
 
+    // 我的投注/投注历史
+    .my-bet-msgbox{
+      width: 278px;
+      height: 100%;
+      .absolute;
+      right: 0;
+      top: 0;
+      background: #102d48;
+      z-index: 99;
+    }
+
     .video-pic {
       width: 100%;
+      height: 380px;
     }
+    
 
     .right-content {
       color: #3b71a4;
@@ -213,29 +343,101 @@
         line-height: 50px;
         background: rgba(4, 21, 39, .7);
         .tx-ct;
+        
+        &::before{
+          content: '';
+          width: 28px;
+          height: 28px;
+          .in-block;
+          margin-right: 10px;
+          vertical-align: -8px;
+          background: url('../../images/streamline/right-icon.png') no-repeat;
+        }
+        &:nth-child(1):before{
+          background-position: 0 0;
+        }
+        &:nth-child(2):before{
+          background-position: -28px 0;
+        }
+        &:nth-child(3):before{
+          background-position: -56px 0;
+        }
 
         &.active {
           color: #fff;
           background: url('../../images/streamline/query-model.png') no-repeat center center;
+          background-size: 100% 100%;
+
+          &::before{
+            background: url('../../images/streamline/right-icon-active.png') no-repeat;
+          }
+          &:nth-child(1):before{
+            background-position: 0 0;
+          }
+          &:nth-child(2):before{
+            background-position: -28px 0;
+          }
+          &:nth-child(3):before{
+            background-position: -56px 0;
+          }
         }
       }
     }
 
     .cont-data {
-      height: 440px;
+      height: calc(100% - 430px);
 
       // 选手数据
       .player-data {
         background: rgba(16, 58, 98, .65);
-        padding: 20px;
         color: #9bc5eb;
         .clear-scroll;
         .tx-ct;
 
+        .db-team{
+          .flex;
+          height: 150px;
+          border-bottom: 1px solid #04101c;
+          li{
+            flex: 1;
+            .tx-ct;
+            img{
+              width: 100px;
+            }
+            em{
+              .block;
+              color: #fff;
+            }
+
+            &:first-child{
+              background: url('../../images/streamline/red-bg.png') no-repeat;
+              background-position: 100%;
+              .relative;
+
+              &::after{
+                content: '';
+                vertical-align: middle;
+                .absolute;
+                right: 0;
+                top: 0;
+                height: 149px;
+                width: 3px;
+                background: url('../../images/streamline/line.png') no-repeat center center;
+                background-position: 100% 100%;
+              }
+            }
+            &:last-child{
+              background: url('../../images/streamline/blue-bg.png') no-repeat;
+              background-position: 100%;
+            }
+          }
+        }
         .progress {
           margin-top: 10px;
           text-align: left;
           font-size: 14px;
+          padding-left: 20px;
+          padding-right: 20px;
         }
 
         .detail-data {
@@ -299,6 +501,95 @@
             }
           }
         }
+
+        .personal-info {
+          border-top: 1px solid #04101c;
+          border-bottom: 1px solid #62c2da;
+          margin-bottom: 20px;
+
+          .flex;
+          &>*{
+            flex: 1;
+          }
+          & > ul {
+            color: #a5aaad;
+
+            li {
+              background: #0a243d;
+              width: 208px;
+              margin: 5px auto;
+              height: 28px;
+              line-height: 28px;
+              font-size: 14px;
+              .cspn;
+              .in-block;
+              font-weight: bold;
+              padding-left: 20px;
+              text-align: left;
+      
+              &.active {
+                color: #fff;
+                background: url("../../images/streamline/info-active.png") no-repeat
+                  center center;
+                background-size: 100% 100%;
+                .tx-rt;
+                padding-right: 20px;
+              }
+            }
+          }
+          .jj {
+            .tx-ct;
+            padding-top: 10px;
+      
+            img{
+              width: 115px;
+            }
+            & > b {
+              color: #fff;
+            }
+            & > span,
+            .progress {
+              color: #bde0ff;
+              font-size: 14px;
+            }
+            .progress,
+            .progress-info {
+              width: 150px;
+              margin: 0 auto;
+            }
+            .progress {
+              height: 3px;
+              margin-top: 5px;
+              & > div {
+                height: 3px;
+                .in-block;
+                .absolute;
+              }
+              .bg-red {
+                background: #af2e81;
+                width: 100%;
+                left: 0;
+              }
+              .bg-yellow {
+                background: #b2a32e;
+                width: 40%;
+                z-index: 99;
+                left: 0;
+              }
+              .bg-green {
+                background: #3db079;
+                width: 45%;
+                z-index: 99;
+                right: 0;
+              }
+            }
+            .progress-info {
+              color: #fff;
+              font-size: 14px;
+              margin-top: 2px;
+            }
+          }
+        }
       }
 
       // 数据对比
@@ -342,7 +633,7 @@
 
             .vs-team {
               width: 70%;
-              margin: 20px auto;
+              margin: 20px auto 0;
               .flex;
               justify-content: center;
               align-items: center;
@@ -512,7 +803,8 @@
 
       // 联赛积分
       .league-points {
-        height: calc(100% - 40px);
+        height: 100%;
+        overflow: hidden;
 
         .data-title {
           .flex;
@@ -535,7 +827,10 @@
         }
 
         .data-scroll {
-          .cont-data {
+          .clear-scroll;
+          height: calc(100% - 40px);
+
+          .cont-list-data {
             li {
               .flex;
               font-size: 14px;

@@ -1,18 +1,25 @@
 <template>
   <div class="studio clearfix">
-      <header>
-          <img src="../../images/header/logo.png" alt="">
-      </header>
-    <div class="left-box">
-      <div class="title relative">
-        <a href="javascript:history.back()"><img src="../../images/streamline/canel.png" class="canel-icon" alt></a>
-        <div class="bet-info in-block">
-          <p>2019-01-30</p>
-          <span>B03</span>
-          <span class="c-tblue">&nbsp;&nbsp;&nbsp;third inning is in progress</span>
-        </div>
-        <img src="../../images/streamline/studio-title.png" class="bs-team" alt>
+    <header>
+      <img src="../../images/header/logo.png" alt>
+    </header>
+    <div class="studio-title relative">
+      <a href="javascript:history.back()">
+        <img src="../../images/streamline/canel.png" class="canel-icon" alt>
+      </a>
+      <div class="bet-info in-block">
+        <p>2019-01-30</p>
+        <span>B03</span>
+        <span class="c-tblue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;third inning is in progress</span>
       </div>
+      <img src="../../images/streamline/studio-title.png" class="bs-team" alt>
+      <ul class="bet-type" @click="isBetShow = !isBetShow">
+        <li @click="betType = 1" :class="{'active': betType === 1}">My Bet</li>
+        <li @click="betType = 2" :class="{'active': betType === 2}">Bet history</li>
+      </ul>
+    </div>
+
+    <div class="left-box">
       <div class="left-content">
         <ul class="cont-title">
           <li :class="{'active': queryType === 1}" @click="queryType = 1">All bets</li>
@@ -24,11 +31,11 @@
           <ul>
             <li v-for="(item, index) in new Array(32)" :key="index">
               <span>Winner of the competition</span>
-              <span>
+              <span class="cspn" @click="isBetShow = !isBetShow">
                 RY
                 <em>1.36</em>
               </span>
-              <span>
+              <span class="cspn" @click="isBetShow = !isBetShow">
                 GS
                 <em>2.941</em>
               </span>
@@ -38,10 +45,12 @@
       </div>
     </div>
     <div class="right-box">
-      <ul class="bet-type">
-        <li @click="betType = 1" :class="{'active-left': betType === 1}">My bet</li>
-        <li @click="betType = 2" :class="{'active-right': betType === 2}">Betting history</li>
-      </ul>
+      <!-- 我的投注/投注历史模块 -->
+      <div class="my-bet-msgbox" v-show="isBetShow">
+        <singleBet></singleBet>
+      </div>
+      <!-- 我的投注/投注历史模块 -->
+
       <img src="../../images/home/nav/video.png" class="video-pic" alt>
       <ul class="right-content">
         <li :class="{'active': rightModel === 1}" @click="rightModel = 1">Player data</li>
@@ -51,7 +60,45 @@
       <div class="cont-data">
         <!-- 选手数据开始 -->
         <div class="player-data" v-show="rightModel === 1">
-          <img src="../../images/home/right/data-top.png" alt>
+          <ul class="db-team">
+            <li>
+              <img src="../../images/home/right/team-1.png" alt>
+              <em>SS</em>
+            </li>
+            <li>
+              <img src="../../images/home/right/team-2.png" alt>
+              <em>SDG</em>
+            </li>
+          </ul>
+          <article>
+            <h1>Alignment data</h1>
+            <div class="personal-info clearfix">
+              <ul>
+                <li
+                  @click="infoIndex = index"
+                  :class="{'active': infoIndex === index}"
+                  v-for="(item, index) in infoList"
+                  v-bind:key="index"
+                >{{item}}</li>
+              </ul>
+              <div class="jj">
+                <img src="../../images/home/right/member1.png" alt>
+                <b class="block">FLANDE</b>
+                <span class="block">Name: Jane Pride</span>
+                <div class="progress relative">
+                  <div class="bg-yellow"></div>
+                  <div class="bg-red"></div>
+                  <div class="bg-green"></div>
+                </div>
+                <div class="progress-info clearfix">
+                  <span class="left">10.3KDA</span>
+                  <span class="right">15/3/10</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <img src="../../images/home/right-en/data-top.png" alt>
           <div class="progress">
             <p class="clearfix">
               <span>100% Win rate</span>
@@ -125,119 +172,165 @@
 
         <!-- 数据对比开始 -->
         <div class="comparison-data" v-show="rightModel === 2">
-            <article>
-                <h1>popularity</h1>
+          <article>
+            <h1>popularity</h1>
+            <div>
+              <div class="title">
+                <p>2019 LPL Spring</p>
+                <span>01-23 17.00 Best of 3</span>
+              </div>
+              <div class="vs-team">
                 <div>
-                    <div class="title">
-                        <p>2019 LPL Spring</p>
-                        <span>01-23 17.00 Best of 3</span>
-                    </div>
-                    <div class="vs-team">
-                        <div>
-                            <img src="../../images/home/right/team-1.png" alt="">
-                            <em>SS</em>
-                        </div>
-                        <span>VS</span>
-                        <div>
-                            <img src="../../images/home/right/team-2.png" alt="">
-                            <em>SDG</em>
-                        </div>
-                    </div>
-                    <div class="match-situation">
-                        <span>stand by SS</span>
-                        <div class="prograss-info">
-                            <p class="clearfix">
-                                <span class="left">77%</span>
-                                <span class="right">23%</span>
-                            </p>
-                            <el-progress :stroke-width="5" :percentage="10" color="#c31313" :show-text="false"></el-progress>
-                        </div>
-                        <span>stand by SDG</span>
-                    </div>
+                  <img src="../../images/home/right/team-1.png" alt>
+                  <em>SS</em>
                 </div>
-            </article>
-            <article>
-                <h1>popularity</h1>
-                <div class="season-performance">
-                    <div class="title">
-                        <p>Season performance</p>
-                        <span>Last 10 performances</span>
-                    </div>
-                    <div class="vs-team">
-                        <div>
-                            <img src="../../images/home/right/team-1.png" alt="">
-                            <em>SS</em>
-                            <span><b>3.4</b>(2.2/2.1/5.2)</span>
-                        </div>
-                        <span>KDA</span>
-                        <div>
-                            <img src="../../images/home/right/team-2.png" alt="">
-                            <em>SDG</em>
-                            <span><b>3.3</b>(2.5/2.5/6.2)</span>
-                        </div>
-                    </div>
-                    <div class="match-situation">
-                        <span>2.2</span>
-                        <div class="prograss-info">
-                            <p>Killed per game</p>
-                            <el-progress :stroke-width="5" :percentage="10" color="#c31313" :show-text="false"></el-progress>
-                        </div>
-                        <span>2.5</span>
-                    </div>
-                    <div class="match-situation">
-                        <span>6.8</span>
-                        <div class="prograss-info">
-                            <p>Equalizing the knife</p>
-                            <el-progress :stroke-width="5" :percentage="30" color="#c31313" :show-text="false"></el-progress>
-                        </div>
-                        <span>6.7</span>
-                    </div>
-                    <div class="match-situation">
-                        <span>356.8</span>
-                        <div class="prograss-info">
-                            <p>Average output</p>
-                            <el-progress :stroke-width="5" :percentage="40" color="#c31313" :show-text="false"></el-progress>
-                        </div>
-                        <span>395.5</span>
-                    </div>
-                    <div class="match-situation">
-                        <span>43</span>
-                        <div class="prograss-info">
-                            <p>Control rate of dragons</p>
-                            <el-progress :stroke-width="5" :percentage="50" color="#c31313" :show-text="false"></el-progress>
-                        </div>
-                        <span>52.6</span>
-                    </div>
-                    <div class="match-situation">
-                        <span>75.7</span>
-                        <div class="prograss-info">
-                            <p>Control rate of big dragons</p>
-                            <el-progress :stroke-width="5" :percentage="60" color="#c31313" :show-text="false"></el-progress>
-                        </div>
-                        <span>54.6</span>
-                    </div>
+                <span>VS</span>
+                <div>
+                  <img src="../../images/home/right/team-2.png" alt>
+                  <em>SDG</em>
                 </div>
-            </article>
-            <article>
-                <h1>Combat record</h1>
-                <div class="combat-record">
-                    <div class="row">
-                        <p class="c-red">SS <b>1Win</b></p>
-                        <p class="c-red mt-10"><b>SS</b>Win</p>
-                        <span>2018-08-07</span>
-                    </div>
-                    <div class="row">
-                        <p>Combat record</p>
-                        <p class="c-blue mt-10"><b>SDG</b>Win</p>
-                        <span>2018-08-15</span>
-                    </div>
-                    <div class="row">
-                        <p class="c-red">SDG <b>2Win</b></p>
-                        <p class="c-red mt-10"><b>SDG</b>Win</p>
-                        <span>2018-08-29</span>
-                    </div>
+              </div>
+              <div class="match-situation">
+                <span>stand by SS</span>
+                <div class="prograss-info">
+                  <p class="clearfix">
+                    <span class="left">77%</span>
+                    <span class="right">23%</span>
+                  </p>
+                  <el-progress
+                    :stroke-width="5"
+                    :percentage="10"
+                    color="#c31313"
+                    :show-text="false"
+                  ></el-progress>
                 </div>
-            </article>
+                <span>stand by SDG</span>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h1>popularity</h1>
+            <div class="season-performance">
+              <div class="title">
+                <p>Season performance</p>
+                <span>Last 10 performances</span>
+              </div>
+              <div class="vs-team">
+                <div>
+                  <img src="../../images/home/right/team-1.png" alt>
+                  <em>SS</em>
+                  <span>
+                    <b>3.4</b>(2.2/2.1/5.2)
+                  </span>
+                </div>
+                <span>KDA</span>
+                <div>
+                  <img src="../../images/home/right/team-2.png" alt>
+                  <em>SDG</em>
+                  <span>
+                    <b>3.3</b>(2.5/2.5/6.2)
+                  </span>
+                </div>
+              </div>
+              <div class="match-situation">
+                <span>2.2</span>
+                <div class="prograss-info">
+                  <p>Killed per game</p>
+                  <el-progress
+                    :stroke-width="5"
+                    :percentage="10"
+                    color="#c31313"
+                    :show-text="false"
+                  ></el-progress>
+                </div>
+                <span>2.5</span>
+              </div>
+              <div class="match-situation">
+                <span>6.8</span>
+                <div class="prograss-info">
+                  <p>Equalizing the knife</p>
+                  <el-progress
+                    :stroke-width="5"
+                    :percentage="30"
+                    color="#c31313"
+                    :show-text="false"
+                  ></el-progress>
+                </div>
+                <span>6.7</span>
+              </div>
+              <div class="match-situation">
+                <span>356.8</span>
+                <div class="prograss-info">
+                  <p>Average output</p>
+                  <el-progress
+                    :stroke-width="5"
+                    :percentage="40"
+                    color="#c31313"
+                    :show-text="false"
+                  ></el-progress>
+                </div>
+                <span>395.5</span>
+              </div>
+              <div class="match-situation">
+                <span>43</span>
+                <div class="prograss-info">
+                  <p>Control rate of dragons</p>
+                  <el-progress
+                    :stroke-width="5"
+                    :percentage="50"
+                    color="#c31313"
+                    :show-text="false"
+                  ></el-progress>
+                </div>
+                <span>52.6</span>
+              </div>
+              <div class="match-situation">
+                <span>75.7</span>
+                <div class="prograss-info">
+                  <p>Control rate of big dragons</p>
+                  <el-progress
+                    :stroke-width="5"
+                    :percentage="60"
+                    color="#c31313"
+                    :show-text="false"
+                  ></el-progress>
+                </div>
+                <span>54.6</span>
+              </div>
+            </div>
+          </article>
+          <article>
+            <h1>Combat record</h1>
+            <div class="combat-record">
+              <div class="row">
+                <p class="c-red">
+                  SS
+                  <b>1Win</b>
+                </p>
+                <p class="c-red mt-10">
+                  <b>SS</b>Win
+                </p>
+                <span>2018-08-07</span>
+              </div>
+              <div class="row">
+                <p>Combat record</p>
+                <p class="c-blue mt-10">
+                  <b>SDG</b>Win
+                </p>
+                <span>2018-08-15</span>
+              </div>
+              <div class="row">
+                <p class="c-red">
+                  SDG
+                  <b>2Win</b>
+                </p>
+                <p class="c-red mt-10">
+                  <b>SDG</b>Win
+                </p>
+                <span>2018-08-29</span>
+              </div>
+            </div>
+          </article>
         </div>
         <!-- 数据对比结束 -->
 
@@ -252,7 +345,7 @@
             <li>integral</li>
           </ul>
           <div class="data-scroll">
-            <ul class="cont-data">
+            <ul class="cont-list-data">
               <li v-for="(item, index) in new Array(8)" :key="index">
                 <span>
                   <em>{{index<10 ? '0'+parseInt(index+1) : parseInt(index+1)}}</em>
@@ -273,17 +366,23 @@
 </template>
 
 <script>
+import singleBet from "../home-en/right/singleBet"; // 投注
 export default {
   data() {
     return {
       queryType: 1,
       betType: 1,
-      rightModel: 3
+      infoList: ["Top", "Jun", "Mid", "ADC", "Sup"],
+      infoIndex: 1,
+      rightModel: 1,
+      isBetShow: false
     };
   },
   created() {},
   methods: {},
-  components: {}
+  components: {
+    singleBet
+  }
 };
 </script>
 
@@ -292,19 +391,28 @@ export default {
 @import "../../styles/common";
 @import "./index";
 @import "./studio";
+.studio {
+  .right-box {
+    .right-content {
+      li:before {
+        left: 20%;
+      }
+    }
+  }
+}
 </style>
 <style lang="less">
 .studio {
-    .el-progress{
-        padding: 0 !important;
-        .el-progress-bar__outer {
-            background: #1d3e5e;
-        }
+  .el-progress {
+    padding: 0 !important;
+    .el-progress-bar__outer {
+      background: #1d3e5e;
     }
-    .match-situation{
-        .el-progress-bar__outer {
-            background: #1351c3;
-        }
+  }
+  .match-situation {
+    .el-progress-bar__outer {
+      background: #1351c3;
     }
+  }
 }
 </style>
