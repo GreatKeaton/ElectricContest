@@ -10,27 +10,10 @@
             alt
             @click="routerTo('streamlineEn', 'streamlineEn')"
           >
-          <!-- <img
-            src="../images/home/right/diamond-2.png"
-            class="version-switch"
-            alt
-            v-show="routhPath === 'streamlineEn'"
-            @click="routerTo('homeEn', 'homeEn')"
-          > -->
         </div>
         <div class="setting" v-show="isNotHeader">
           <div class="setItem pointer" @click="funcSetDialogVisible = true">Preferences</div>
           <div class="setItem pointer" @click="betRecordDialogVisible = true">betting record</div>
-          <!-- <select
-            name
-            id
-            class="langu-change"
-            v-model="language"
-            @change="routerTo(language, language)"
-          >
-            <option value="home">中文</option>
-            <option value="homeEn">英文</option>
-          </select> -->
           <div class="lang-query">
             <div class="lang-query-input" @click="isQueryLang = !isQueryLang">
               <img src="../images/home/right/zn.png" alt="" v-show="lang === 'home'">

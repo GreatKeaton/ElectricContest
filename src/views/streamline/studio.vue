@@ -365,7 +365,7 @@
 </template>
 
 <script>
-import singleBet from "../home/right/singleBet"; // 投注
+import singleBet from "../home/right/settlement"; // 投注
 export default {
   data() {
     return {
