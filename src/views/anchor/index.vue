@@ -33,24 +33,35 @@
           </span>
         </div>
       </div>
-      <div class="c-ct relative">
+      <div class="c-ct relative" ref="centerBox">
         <div
           class="video-box"
           v-show="!isWindowSpring"
-          @mouseover="videoClass='video-top-icon'; videoBottomClass='video-bottom-icon'"
-          @mouseout="videoClass='video-top-hide'; videoBottomClass='video-bottom-hide'"
+          @mouseover="videoBottomClass='video-bottom-icon'"
+          @mouseout=" videoBottomClass='video-bottom-hide'"
         >
           <img src="../../images/home/nav/video.png" alt width="100%" v-show="!isCutoverVideo">
-          <img src="../../images/home/nav/outs-game.jpg" alt width="100%" v-show="isCutoverVideo">
-          <img src="../../images/streamline/qh.png" class="cutover" alt="" @click="isCutoverVideo = !isCutoverVideo">
-          <div class="play-top" :class="videoClass">
-            <img src="../../images/streamline/canel.png" class="canel-icon" alt="">
+          <img src="../../images/streamline/mn.jpg" alt width="100%" v-show="isCutoverVideo">
+          <img
+            src="../../images/streamline/qh.png"
+            class="cutover"
+            v-show="!isCloseLive"
+            alt
+            @click="isCutoverVideo = !isCutoverVideo"
+          >
+          <div class="play-top video-top-icon">
+            <router-link to="/home">
+              <img src="../../images/streamline/canel.png" class="canel-icon" alt>
+            </router-link>
             <div class="bszj">
               <p>2019-01-31</p>
-              <p>B03 <span class="c-blue">第三局进行中</span></p>
+              <p>
+                B03
+                <span class="c-blue">第三局进行中</span>
+              </p>
             </div>
             <img src="../../images/home/right-en/top.jpg" class="top-icon" alt>
-            <a href="javascript:;" class="zb-btn">主播视频</a>
+            <a href="javascript:;" class="zb-btn" @click="anchorShow(false)">主播视频</a>
           </div>
           <div class="play-list clearfix" :class="videoBottomClass">
             <img src="../../images/home/right/off.png" alt>
@@ -85,7 +96,7 @@
               <dt></dt>
               <dd>
                 <ul class="bs-result">
-                  <li v-for="(item, index) in new Array(10)" v-bind:key="index">
+                  <li v-for="(item, index) in new Array(50)" v-bind:key="index">
                     <span>比赛获胜方</span>
                     <span>
                       <b>RY</b>1.36
@@ -103,11 +114,27 @@
 
       <div class="c-rt">
         <div class="live-box" v-show="!isCloseLive">
-            <img src="../../images/home/nav/video.png" class="live-video" alt v-show="isCutoverVideo">
-            <img src="../../images/home/nav/outs-game.jpg" class="live-video" alt="" v-show="!isCutoverVideo">
+          <img src="../../images/home/nav/video.png" class="live-video" alt v-show="isCutoverVideo">
+          <img
+            src="../../images/streamline/mn.jpg"
+            class="live-video"
+            alt
+            v-show="!isCutoverVideo"
+          >
 
-            <img src="../../images/streamline/qh.png" class="cutover" alt="" @click="isCutoverVideo = !isCutoverVideo">
-            <img src="../../images/streamline/close.png" class="close-live" alt="" @click="isCloseLive = true">
+          <img
+            src="../../images/streamline/qh.png"
+            class="cutover"
+            v-show="!isCloseLive"
+            alt
+            @click="isCutoverVideo = !isCutoverVideo"
+          >
+          <img
+            src="../../images/streamline/close.png"
+            class="close-live"
+            alt
+            @click="anchorShow(true)"
+          >
         </div>
         <div class="content-2 relative" @click="betList2=false">
           <ul class="title">
@@ -344,7 +371,7 @@ export default {
       gameList: [],
       listIndex: 1,
       isCutoverVideo: false,
-      isCloseLive: false,
+      isCloseLive: true,
       lists: [
         "由于万博体育延时结算，如果无法签到(2019年1月11日之前无法签到的会员)，请联系客服进行补签。"
       ],
@@ -385,7 +412,29 @@ export default {
     datas,
     mores
   },
+  mounted() {
+    let box = this.$refs.centerBox;
+    let videoHeight = document.getElementsByClassName('video-box')[0].offsetHeight;
+    box.addEventListener(
+      "scroll",
+      () => {
+        if(!this.isWindowSpring){
+          this.isWindowSpring = box.scrollTop > videoHeight ? true : false;
+        }else{
+          if(!box.scrollTop){
+            this.isWindowSpring = false;
+          }
+        }
+      },
+      false
+    );
+  },
   methods: {
+    anchorShow: function(bool){
+      this.isCloseLive = bool;
+      let rightHeight = document.getElementsByClassName('c-rt')[0].offsetHeight;
+      document.getElementsByClassName('content-2')[0].style.height = (!bool ? (rightHeight - 210) : rightHeight) + 'px';
+    },
     move(e) {
       let odiv = e.target;
 
@@ -417,6 +466,9 @@ export default {
       this.rightBetListType = type;
       // if (type === "tzlb") this.betList2 = !this.betList2;
     }
+  },
+  destroyed() {
+    this.$refs.centerBox.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
