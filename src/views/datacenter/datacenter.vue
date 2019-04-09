@@ -1,19 +1,38 @@
 <template>
   <div class="datacenter">
+    <header v-if="isHeader">
+      <router-link to="/streamline">
+        <img src="../../images/header/logo.png" alt>
+      </router-link>
+    </header>
+
     <ul class="top-game-nav-list">
-      <li :class="{'active': navActiveIndex === index}" @click="navActiveIndex = index" v-for="(item, index) in navList" v-bind:key='index'>
-        <i :class="(index === 0) ? 'icon-00' : 'icon-'+index"></i>{{item}}
+      <li
+        :class="{'active': navActiveIndex === index}"
+        @click="navActiveIndex = index"
+        v-for="(item, index) in navList"
+        v-bind:key="index"
+      >
+        <i :class="(index === 0) ? 'icon-00' : 'icon-'+index"></i>
+        {{item}}
       </li>
     </ul>
 
     <ul class="game-events">
-      <li :class="{'active': navActiveIndex2 === index}" @click="navActiveIndex2 = index" v-for="(item, index) in navList2" v-bind:key='index'>{{item}}</li>
+      <li
+        :class="{'active': navActiveIndex2 === index}"
+        @click="navActiveIndex2 = index"
+        v-for="(item, index) in navList2"
+        v-bind:key="index"
+      >{{item}}</li>
     </ul>
 
     <div class="query-date">
       <div class="search-panel">
         <ul class="week-list">
-          <li class="tull-left"><img src="../../images/datacenter/right.png" alt=""></li>
+          <li class="tull-left">
+            <img src="../../images/datacenter/right.png" alt>
+          </li>
           <li :class="{'active': weekActiveInd === 1}" @click="weekActiveInd = 1">周一 01-21</li>
           <li :class="{'active': weekActiveInd === 2}" @click="weekActiveInd = 2">周二 01-21</li>
           <li :class="{'active': weekActiveInd === 3}" @click="weekActiveInd = 3">周三 01-21</li>
@@ -21,7 +40,9 @@
           <li :class="{'active': weekActiveInd === 5}" @click="weekActiveInd = 5">周五 01-21</li>
           <li :class="{'active': weekActiveInd === 6}" @click="weekActiveInd = 6">周六 01-21</li>
           <li :class="{'active': weekActiveInd === 7}" @click="weekActiveInd = 7">周日 01-21</li>
-          <li class="tull-right"><img src="../../images/datacenter/left.png" alt=""></li>
+          <li class="tull-right">
+            <img src="../../images/datacenter/left.png" alt>
+          </li>
         </ul>
 
         <ul class="query-filter">
@@ -31,7 +52,9 @@
 
         <div class="search-inp">
           <input type="text" placeholder="请输入你要搜索的内容">
-          <i><img src="../../images/news/find.png" alt=""></i>
+          <i>
+            <img src="../../images/news/find.png" alt>
+          </i>
         </div>
       </div>
 
@@ -41,7 +64,6 @@
       </div>
     </div>
 
-
     <div class="query-content">
       <div class="content-scroll">
         <p>2019-01-27 周日</p>
@@ -49,7 +71,7 @@
           <li v-for="(item, index) in new Array(2)" v-bind:key="index">
             <div class="left-date">
               <span class="time">16:00</span>
-              <img src="../../images/datacenter/yxlm.png" alt="">
+              <img src="../../images/datacenter/yxlm.png" alt>
             </div>
             <div class="right-info">
               <div class="title">
@@ -64,7 +86,9 @@
                 </div>
               </div>
               <div class="detail">
-                <span class="left-star"><img src="../../images/datacenter/star.png" alt=""></span>
+                <span class="left-star">
+                  <img src="../../images/datacenter/star.png" alt>
+                </span>
                 <div class="center-list">
                   <div>
                     <i class="icon-rng"></i>RNG
@@ -82,7 +106,10 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    <span class="last-text">实力评分：<em>951</em></span>
+                    <span class="last-text">
+                      实力评分：
+                      <em>951</em>
+                    </span>
                   </div>
                   <div>
                     <i class="icon-we"></i>WE&nbsp;&nbsp;
@@ -100,11 +127,14 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    <span class="last-text">实力评分：<em>991</em></span>
+                    <span class="last-text">
+                      实力评分：
+                      <em>991</em>
+                    </span>
                   </div>
                 </div>
                 <div class="right-path">
-                  <a href="">比赛前瞻</a>
+                  <a href>比赛前瞻</a>
                 </div>
               </div>
             </div>
@@ -112,7 +142,7 @@
           <li v-for="(item, index) in new Array(2)" v-bind:key="index">
             <div class="left-date">
               <span class="time">16:00</span>
-              <img src="../../images/datacenter/yxlm.png" alt="">
+              <img src="../../images/datacenter/yxlm.png" alt>
             </div>
             <div class="right-info">
               <div class="title">
@@ -127,7 +157,9 @@
                 </div>
               </div>
               <div class="detail">
-                <span class="left-star"><img src="../../images/datacenter/esport.png" alt=""></span>
+                <span class="left-star">
+                  <img src="../../images/datacenter/esport.png" alt>
+                </span>
                 <div class="center-list">
                   <div>
                     <i class="icon-rng"></i>RNG
@@ -145,8 +177,11 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    
-                    <span class="last-text">实力评分：<em>951</em></span>
+
+                    <span class="last-text">
+                      实力评分：
+                      <em>951</em>
+                    </span>
                   </div>
                   <div>
                     <i class="icon-we"></i>WE&nbsp;&nbsp;
@@ -165,12 +200,15 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    <img class="color-pic" src="../../images/datacenter/game2.png" alt="">
-                    <span class="last-text">实力评分：<em>991</em></span>
+                    <img class="color-pic" src="../../images/datacenter/game2.png" alt>
+                    <span class="last-text">
+                      实力评分：
+                      <em>991</em>
+                    </span>
                   </div>
                 </div>
                 <div class="right-path">
-                  <a href="">比赛前瞻</a>
+                  <a href>比赛前瞻</a>
                 </div>
               </div>
             </div>
@@ -182,7 +220,7 @@
           <li v-for="(item, index) in new Array(2)" v-bind:key="index">
             <div class="left-date">
               <span class="time">16:00</span>
-              <img src="../../images/datacenter/yxlm.png" alt="">
+              <img src="../../images/datacenter/yxlm.png" alt>
             </div>
             <div class="right-info">
               <div class="title">
@@ -197,7 +235,9 @@
                 </div>
               </div>
               <div class="detail">
-                <span class="left-star"><img src="../../images/datacenter/star.png" alt=""></span>
+                <span class="left-star">
+                  <img src="../../images/datacenter/star.png" alt>
+                </span>
                 <div class="center-list">
                   <div>
                     <i class="icon-rng"></i>RNG
@@ -215,7 +255,10 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    <span class="last-text">实力评分：<em>951</em></span>
+                    <span class="last-text">
+                      实力评分：
+                      <em>951</em>
+                    </span>
                   </div>
                   <div>
                     <i class="icon-we"></i>WE&nbsp;&nbsp;
@@ -233,11 +276,14 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    <span class="last-text">实力评分：<em>991</em></span>
+                    <span class="last-text">
+                      实力评分：
+                      <em>991</em>
+                    </span>
                   </div>
                 </div>
                 <div class="right-path">
-                  <a href="">比赛前瞻</a>
+                  <a href>比赛前瞻</a>
                 </div>
               </div>
             </div>
@@ -245,7 +291,7 @@
           <li v-for="(item, index) in new Array(2)" v-bind:key="index">
             <div class="left-date">
               <span class="time">16:00</span>
-              <img src="../../images/datacenter/yxlm.png" alt="">
+              <img src="../../images/datacenter/yxlm.png" alt>
             </div>
             <div class="right-info">
               <div class="title">
@@ -260,7 +306,9 @@
                 </div>
               </div>
               <div class="detail">
-                <span class="left-star"><img src="../../images/datacenter/esport.png" alt=""></span>
+                <span class="left-star">
+                  <img src="../../images/datacenter/esport.png" alt>
+                </span>
                 <div class="center-list">
                   <div>
                     <i class="icon-rng"></i>RNG
@@ -278,8 +326,11 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    
-                    <span class="last-text">实力评分：<em>951</em></span>
+
+                    <span class="last-text">
+                      实力评分：
+                      <em>951</em>
+                    </span>
                   </div>
                   <div>
                     <i class="icon-we"></i>WE&nbsp;&nbsp;
@@ -298,12 +349,15 @@
                       <i>0</i>
                       <i>0</i>
                     </div>
-                    <img class="color-pic" src="../../images/datacenter/game2.png" alt="">
-                    <span class="last-text">实力评分：<em>991</em></span>
+                    <img class="color-pic" src="../../images/datacenter/game2.png" alt>
+                    <span class="last-text">
+                      实力评分：
+                      <em>991</em>
+                    </span>
                   </div>
                 </div>
                 <div class="right-path">
-                  <a href="">比赛前瞻</a>
+                  <a href>比赛前瞻{{isHeader}}</a>
                 </div>
               </div>
             </div>
@@ -316,31 +370,38 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      navList: ['全部游戏', '英雄联盟', '王者荣耀', 'DDTA2', 'CSGO', '绝地求生', '守望先锋', '星际争霸', '更多'],
+      navList: [
+        "全部游戏",
+        "英雄联盟",
+        "王者荣耀",
+        "DDTA2",
+        "CSGO",
+        "绝地求生",
+        "守望先锋",
+        "星际争霸",
+        "更多"
+      ],
       navActiveIndex: 1,
-      navList2: ['赛事进程', '最新赛果', '联盟积分表', '战队信息', '选手信息'],
+      navList2: ["赛事进程", "最新赛果", "联盟积分表", "战队信息", "选手信息"],
       navActiveIndex2: 1,
       weekActiveInd: 1,
       filterActiveInd: 1,
-    }
+      isHeader: false
+    };
   },
-  created () {
-
-    },
-  methods: {
-
+  created() {
+    this.isHeader = localStorage.getItem("routeHeader") === "streamline";
   },
-  components: {
-
-  }
-}
+  methods: {},
+  components: {}
+};
 </script>
 
 <style lang="less" scoped>
-  @import '../../styles/main';
-  @import '../../styles/common';
-  @import '../../styles/gameNav';
-  @import './datacenter';
+@import "../../styles/main";
+@import "../../styles/common";
+@import "../../styles/gameNav";
+@import "./datacenter";
 </style>

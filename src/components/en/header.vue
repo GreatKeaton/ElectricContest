@@ -3,38 +3,38 @@
     <div class="center">
       <div class="nav">
         <div class="logo">
-          <img src="../images/header/logo.png" alt>
+          <img src="../../images/header/logo.png" alt>
           <img
-            src="../images/home/right/diamond.png"
-            class="version-switch" alt
-            @click="routerTo('streamline', 'streamline')"
+            src="../../images/home/right-en/logo1.png"
+            class="version-switch"
+            alt
+            @click="routerTo('streamlineEn', 'streamlineEn')"
           >
         </div>
-        <div class="setting" v-show="!isNotHeader">
-          <div class="setItem pointer" @click="funcSetDialogVisible = true">功能设定</div>
-          <div class="setItem pointer" @click="betRecordDialogVisible = true">投注记录</div>
+        <div class="setting" v-show="isNotHeader">
+          <div class="setItem pointer" @click="funcSetDialogVisible = true">Preferences</div>
+          <div class="setItem pointer" @click="betRecordDialogVisible = true">betting record</div>
           <div class="lang-query">
             <div class="lang-query-input" @click="isQueryLang = !isQueryLang">
-              <img src="../images/home/right/zn.png" alt="" v-show="lang === 'home'">
-              <img src="../images/home/right/en.png" alt="" v-show="lang === 'homeEn'">
+              <img src="../../images/home/right/zn.png" alt="" v-show="lang === 'home'">
+              <img src="../../images/home/right/en.png" alt="" v-show="lang === 'homeEn'">
               <i class="el-icon-caret-bottom"></i>
             </div>
             <ul v-show="isQueryLang" @click="isQueryLang = false">
-              <li @click="routerTo('home', 'home');lang = 'home'"><img src="../images/home/right/zn.png" alt=""></li>
-              <li @click="routerTo('homeEn', 'homeEn');lang = 'homeEn'"><img src="../images/home/right/en.png" alt=""></li>
+              <li @click="routerTo('home', 'home');lang = 'home'"><img src="../../images/home/right/zn.png" alt=""></li>
+              <li @click="routerTo('homeEn', 'homeEn');lang = 'homeEn'"><img src="../../images/home/right/en.png" alt=""></li>
             </ul>
           </div>
         </div>
       </div>
-      <ul class="navItemBox cspn" v-show="!isNotHeader">
+      <ul class="navItemBox cspn" v-show="isNotHeader">
         <li
           v-for="(item,index) in list"
-          :key="index"
+          v-bind:key="index"
           class="navItem textCen"
-          :class="{itemActive:(item.name === activeName),itemLast:list[index+1] && list[index+1].name === activeName}"
-        >
-          <div @click="routerTo(index,item.name)">{{item.value}}</div>
-        </li>
+          :class="{itemActive:(item === activeName), itemLast:list[index+1] && list[index+1] === activeName}"
+          @click="routerTo(index,item.name)"
+        >{{item.value}}</li>
       </ul>
     </div>
 
@@ -49,63 +49,65 @@
 </template>
 
 <script>
-import functionSetting from '../components/functionSetting';
-import betRecord from '../components/betRecord';
+import functionSetting from '../functionSetting';
+import betRecord from '../betRecord';
 export default {
   data() {
     return {
       activeName: "",
       betRecordDialogVisible: false,
       funcSetDialogVisible: false,
+      funcSetIndex: 1,
       routhPath: this.$route.name,
-      isNotHeader: this.routhPath === 'streamline' || this.routhPath === 'streamlineEn',
       isQueryLang: false,
       lang: this.$route.params.order || "homeEn",
+      routeParams: localStorage.getItem('routeHeader'),
+      isNotHeader: (this.routhPath === 'streamline' || this.routhPath === 'streamlineEn') || true,
       list: [
         {
-          value: "赛事",
-          url: "/home",
-          name: "home"
+          value: "Matches",
+          url: "/homeEn",
+          name: "homeEn"
         },
         {
-          value: "竞猜活动",
+          value: "Quiz",
           url: "/quiz",
-          name: "quiz"
+          name: "quizEn"
         },
         {
-          value: "数据中心",
+          value: "Resources",
           url: "/datacenter",
-          name: "datacenter"
+          name: "datacenterEn"
         },
         {
-          value: "赛事新闻",
+          value: "News",
           url: "/news",
-          name: "news"
+          name: "newsEn"
         },
         {
-          value: "情报攻略",
+          value: "Strategy",
           url: "/strategy",
-          name: "strategy"
+          name: "strategyEn"
         },
         {
-          value: "玩法规则",
+          value: "Betting rules",
           url: "/rules",
-          name: "rules"
+          name: "rulesEn"
         },
         {
-          value: "排行成就榜",
+          value: "ranking",
           url: "/ranking",
-          name: "ranking"
+          name: "rankingEn"
         },
         {
-          value: "商城",
+          value: "E-shop",
           url: "/mall",
-          name: "mall"
+          name: "mallEn"
         },
         {
-          value: "视频中心",
+          value: "Videos",
           url: "/videos",
-          name: "videos"
+          name: "videosEn"
         }
       ]
     };
@@ -127,10 +129,12 @@ export default {
       }
     }
   },
+  created(){
+    console.log(this.routeParams);
+  },
   watch: {
     $route(to, from) {
       this.activeName = to.name;
-      // this.isNotHeader = this.activeName === 'streamline' || this.activeName === 'streamlineEn';
       if (to.name === "home" || to.name === "homeEn"){
         this.lang = to.name;
       }
@@ -146,7 +150,6 @@ export default {
 <style lang='stylus' scoped>
 #headerNav {
   margin-bottom: 8px;
-
   .center {
     width: 1360px;
     margin: 0 auto;
@@ -165,6 +168,7 @@ export default {
 
         .setItem {
           margin-right: 20px;
+          display: inline-block;
         }
 
         .lang-query{
@@ -217,18 +221,18 @@ export default {
       .navItem {
         width: 150px;
         line-height: 60px;
-        background: url('../images/header/line.png') no-repeat center right / auto;
+        background: url('../../images/header/line.png') no-repeat center right / auto;
 
         &:first-of-type {
-          background: url('../images/header/line.png') no-repeat center left / auto, url('../images/header/line.png') no-repeat center right / auto;
+          background: url('../../images/header/line.png') no-repeat center left / auto, url('../../images/header/line.png') no-repeat center right / auto;
         }
 
         &.itemLast {
-          background: url('../images/header/line.png') no-repeat center left / auto;
+          background: url('../../images/header/line.png') no-repeat center left / auto;
         }
 
         &.itemActive {
-          background: url('../images/header/btn_bg.png') top center / 100% 100%;
+          background: url('../../images/header/btn_bg.png') top center / 100% 100%;
           color: #ffffff;
         }
       }
@@ -241,8 +245,9 @@ export default {
 }
 </style>
 <style lang="less">
-@import "../styles/main";
-@import "../styles/common";
+@import "../../styles/main";
+@import "../../styles/common";
+// @import "../../styles/header";
 
 .func-set-dialog .el-dialog__header {
   padding: 0;

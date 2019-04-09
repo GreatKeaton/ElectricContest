@@ -1,7 +1,7 @@
 <template>
   <div class="rules">
     <header v-if="isHeader">
-      <router-link to="/home"><img src="../../images/header/logo.png" alt></router-link>
+      <router-link to="/streamline"><img src="../../images/header/logo.png" alt></router-link>
     </header>
     <div class="rules-content">
       <div class="left">

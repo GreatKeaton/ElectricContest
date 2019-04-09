@@ -10,7 +10,7 @@
 
 <script>
 import HeaderBar from "@/components/header";
-import headerEn from "@/components/header-en";
+import headerEn from "./components/en/header";
 export default {
   name: "App",
   data() {
